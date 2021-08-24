@@ -45,6 +45,28 @@ body {
     flex-grow: 1;
 }
 
+.itemContainer {
+    height: 150px;
+    width: 150px;
+    border: 2px solid green;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.itemImageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.itemImageContainer img {
+    height: 100px;
+}
+
+.itemSelectContainer {
+    display: flex;
+}
+
 .footer {
     border-top: 2px solid blue;
 }

@@ -42,7 +42,17 @@ module.exports = {
                         "loader": "html-loader"
                     }
                 ]
-            }
+            },
+            {
+                "test": /\.(png|jpe?g|gif)$/i,
+                "use": [
+                  {
+                    "loader": 'file-loader',
+                    "options": {
+                        "name": '/public/icons/[name].[ext]'
+                  },
+                ],
+              }
         ]
     },
     "plugins": [

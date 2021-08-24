@@ -2,6 +2,7 @@ import React from 'react';
 import './app.css';
 import Header from './components/header';
 import Footer from './components/footer';
+import Item from './components/item';
 
 
 function App () {
@@ -12,6 +13,8 @@ function App () {
                 <h1>Title</h1>
                 <p>Here we go!</p>
                 <p>Here we go again!</p>
+                <Item />
+                <Item />
             </div>
             <Footer />
         </div>
