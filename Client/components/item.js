@@ -1,5 +1,4 @@
 import React from 'react';
-import chevLeft from '../../public/icons/chevLeft.jpg';
 
 export default function Item () {
     return (
@@ -8,9 +7,10 @@ export default function Item () {
                 <img src='beans.jpg'></img>
             </div>
             <div className='itemSelectContainer'>
-                <img src={chevLeft} />
-                
-                
+                <img src='icons/chevLeft.jpg' />
+                <p>5</p>
+                <img src='icons/chevRight.jpg' />
+                <img src='icons/cart.png' />
             </div>
         </div>
     )
