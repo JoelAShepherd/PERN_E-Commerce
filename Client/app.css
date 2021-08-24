@@ -45,6 +45,11 @@ body {
     flex-grow: 1;
 }
 
+.outerItemContainer {
+    display: flex;
+    justify-content:space-around;
+}
+
 .itemContainer {
     height: 150px;
     width: 150px;

@@ -13,8 +13,10 @@ function App () {
                 <h1>Title</h1>
                 <p>Here we go!</p>
                 <p>Here we go again!</p>
-                <Item />
-                <Item />
+                <div className='outerItemContainer'>
+                    <Item />
+                    <Item />
+                </div> 
             </div>
             <Footer />
         </div>
