@@ -20,7 +20,7 @@ export default function Header () {
                         <div className='cartCountCont'>
                             <div className='cartcount'>{cartQuant}</div>
                         </div>
-                        <div className='cartsum'>{cartTotal}</div>
+                        <div className='cartsum'>£{cartTotal.toFixed(2)}</div>
                     </div>
                 </Link>
             </div>

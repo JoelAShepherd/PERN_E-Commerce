@@ -11,7 +11,7 @@ export default function CartItem (props) {
     const cartArr = useSelector(selectCartItems)
     const thisItem = cartArr.find(({id}) => id == props.id)
 
-    const subtotal = thisItem.quantity * thisProduct.unitPrice;
+    const subtotal = (thisItem.quantity * thisProduct.unitPrice).toFixed(2);
 
     
 

@@ -19,7 +19,8 @@ export const cartSlice = createSlice({
                 state.cartItems.push({id: action.payload.id, quantity: action.payload.quantity})
             }
             state.totalItems += action.payload.quantity;
-            state.totalPrice += (action.payload.quantity * action.payload.unitPrice)
+            state.totalPrice += (action.payload.quantity * action.payload.unitPrice);
+            
         },
         removeItemsFromCart(state, action){
             let itemToChange = state.cartItems.find(({id}) => id == action.payload.id);
@@ -27,13 +28,18 @@ export const cartSlice = createSlice({
                 itemToChange.quantity--;
                 state.totalItems--;
                 state.totalPrice -= action.payload.unitPrice;
+                
             }
             if (action.payload.all || itemToChange.quantity === 0){
                 state.totalItems -= itemToChange.quantity;
                 state.totalPrice -= (itemToChange.quantity*action.payload.unitPrice);
+                
                 let newArr = state.cartItems.filter(({id}) => id !== action.payload.id)
                 state.cartItems = newArr;
 
+            }
+            if (state.totalPrice < 0){
+                state.totalPrice = 0;
             }
         }
     }
