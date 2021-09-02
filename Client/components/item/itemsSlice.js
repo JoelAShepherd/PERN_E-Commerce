@@ -6,7 +6,7 @@ export const itemsSlice = createSlice({
         test: 4,
         items: [
             {id:"1", name: 'beans', quantInComp: 1},
-            {id:"2", name: 'beans2', quantInComp: 1}
+            {id:"2", name: 'beans2', quantInComp: 2}
             //quantInComp is the quantity in the item component that the
             //user can change so as to add that quantity to the basket.
             //It does not represent the quantity in the database. 
@@ -16,30 +16,27 @@ export const itemsSlice = createSlice({
         addItem(state, action){
             state.items.push(action.payload)
         },
-        incrementQuant(state, action){
-            const item = state.find(({id}) => id === action.payload.id)
-            if (item.quantInComp < 10) {
-                item.quantInComp++;
+        changeItem(state, action){
+            let item = state.items.find(({id}) => id == action.payload.id)
+            if (action.payload.direction){
+                if (item.quantInComp < 10){
+                    item.quantInComp++;
+                }
             }
-        },
-        decrementQuant(state, action){
-            const item = state.find(({id}) => id === action.payload.id)
-            if (item.quantitySelect > 1) {
-                item.quantitySelect--;
+            if (!action.payload.direction) {
+                if (item.quantInComp > 1){
+                    item.quantInComp--;
+                }
             }
-        },
-        upTest(state){
-            state.test++;
-        },
-        downTest(state) {
-            state.test--;
         }
     }
 })
 
+console.log(itemsSlice.actions)
+
 export const selectItems = state => state.items;
 export const selectTest = state => state.items.test;
 
-export const {addItem, incrementQuant, decrementQuant, upTest, downTest} = itemsSlice.actions;
+export const {addItem} = itemsSlice.actions;
 
 export default itemsSlice.reducer;

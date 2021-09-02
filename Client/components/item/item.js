@@ -1,12 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTest, upTest, downTest } from './itemsSlice';
+import { selectItems } from './itemsSlice';
 
 export default function Item (props) {
-    const testVal = useSelector(selectTest)
     const dispatch = useDispatch();
+    const itemsArr = useSelector(selectItems)
+    const thisItem = itemsArr.items.find(({id}) => id === props.id)
+    const thisItemQuant = thisItem.quantInComp
 
-
+    function changeItemQuant(bool){
+        let payload = {
+            id: props.id,
+            direction: bool
+        }
+        return {
+            type: "items/changeItem",
+            payload
+        }
+    }
+    
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
@@ -14,11 +26,12 @@ export default function Item (props) {
                 <img src='beans.jpg'></img>
             </div>
             <div className='itemSelectContainer'>
-                <button  onClick={() => dispatch(downTest())}>
+                <button onClick={() => dispatch(changeItemQuant(false))} >
                     <img src='icons/chevLeft.jpg'/>
                 </button>
-                    <p>{testVal}</p>
-                <button onClick={() => dispatch(upTest())}><img src='icons/chevRight.jpg'/></button>
+                    <p>{thisItemQuant}</p>
+                <button onClick={() => dispatch(changeItemQuant(true))}>
+                    <img src='icons/chevRight.jpg'/></button>
                 <img src='icons/cart.png' />
             </div>
         </div>
