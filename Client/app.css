@@ -45,7 +45,7 @@ body {
     flex-grow: 1;
 }
 
-.outerItemContainer {
+.outerProductsContainer {
     display: flex;
     justify-content:space-around;
 }
