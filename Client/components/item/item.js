@@ -22,6 +22,17 @@ export default function Item (props) {
             payload
         }
     }
+
+    function addToCart() {
+        let payload = {
+            id: props.id,
+            quantity: thisItemQuant
+        }
+        return {
+            type: "cart/addItemsToCart",
+            payload
+        }
+    }
     
     return (
         <div className='itemContainer'>
@@ -37,7 +48,9 @@ export default function Item (props) {
                     <p>{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))}>
                     <img src='icons/chevRight.jpg'/></button>
-                <img src='icons/cart.png' />
+                <button onClick={() => dispatch(addToCart())}>
+                    <img src='icons/cart.png' />
+                </button>
             </div>
         </div>
     )

@@ -6,7 +6,7 @@ export const cartSlice = createSlice({
         cartItems: [
             {id: 2, quantity: 6}
         ],
-        totalItems: 0,
+        totalItems: 6,
         totalPrice: 0
     },
     reducers: {
@@ -18,10 +18,14 @@ export const cartSlice = createSlice({
             else {
                 state.cartItems.push({id: action.payload.id, quantity: action.payload.quantity})
             }
+        state.totalItems += action.payload.quantity
         }
     }
 })
 
+console.log('cart actions', cartSlice.actions)
+
 export const selectCartItems = state => state.cart.cartItems;
+export const selectCartQuantity = state => state.cart.totalItems;
 
 export default cartSlice.reducer;
