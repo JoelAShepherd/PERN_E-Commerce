@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector} from 'react-redux';
-import { selectTest } from './itemsSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectTest, upTest, downTest } from './itemsSlice';
 
 export default function Item (props) {
     const testVal = useSelector(selectTest)
+    const dispatch = useDispatch();
+
 
     return (
         <div className='itemContainer'>
@@ -12,9 +14,11 @@ export default function Item (props) {
                 <img src='beans.jpg'></img>
             </div>
             <div className='itemSelectContainer'>
-                <img src='icons/chevLeft.jpg' />
-                <p>{testVal}</p>
-                <img src='icons/chevRight.jpg' />
+                <button  onClick={() => dispatch(downTest())}>
+                    <img src='icons/chevLeft.jpg'/>
+                </button>
+                    <p>{testVal}</p>
+                <button onClick={() => dispatch(upTest())}><img src='icons/chevRight.jpg'/></button>
                 <img src='icons/cart.png' />
             </div>
         </div>

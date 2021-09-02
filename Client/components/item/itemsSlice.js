@@ -27,6 +27,12 @@ export const itemsSlice = createSlice({
             if (item.quantitySelect > 1) {
                 item.quantitySelect--;
             }
+        },
+        upTest(state){
+            state.test++;
+        },
+        downTest(state) {
+            state.test--;
         }
     }
 })
@@ -34,6 +40,6 @@ export const itemsSlice = createSlice({
 export const selectItems = state => state.items;
 export const selectTest = state => state.items.test;
 
-export const {addItem, incrementQuant, decrementQuant} = itemsSlice.actions;
+export const {addItem, incrementQuant, decrementQuant, upTest, downTest} = itemsSlice.actions;
 
 export default itemsSlice.reducer;
