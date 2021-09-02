@@ -2,7 +2,7 @@ import React from 'react';
 import './app.css';
 import Header from './components/header';
 import Footer from './components/footer';
-import Item from './components/item';
+import Item from './components/item/item';
 
 
 function App () {
@@ -14,8 +14,8 @@ function App () {
                 <p>Here we go!</p>
                 <p>Here we go again!</p>
                 <div className='outerItemContainer'>
-                    <Item />
-                    <Item />
+                    <Item id="A"/>
+                    <Item id="B"/>
                 </div> 
             </div>
             <Footer />

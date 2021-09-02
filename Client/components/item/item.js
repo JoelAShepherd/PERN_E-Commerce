@@ -1,9 +1,10 @@
 import React from 'react';
 
-export default function Item () {
+export default function Item (props) {
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
+                <p>{props.id}</p>
                 <img src='beans.jpg'></img>
             </div>
             <div className='itemSelectContainer'>
