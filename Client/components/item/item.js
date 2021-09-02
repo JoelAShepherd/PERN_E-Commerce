@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectItems } from './itemsSlice';
 import { selectProducts } from '../../api/fakeAPI';
+import { addToCart } from '../cart/cartSlice';
 
 export default function Item (props) {
     const dispatch = useDispatch();
@@ -23,16 +24,7 @@ export default function Item (props) {
         }
     }
 
-    function addToCart() {
-        let payload = {
-            id: props.id,
-            quantity: thisItemQuant
-        }
-        return {
-            type: "cart/addItemsToCart",
-            payload
-        }
-    }
+    
     
     return (
         <div className='itemContainer'>
@@ -48,7 +40,7 @@ export default function Item (props) {
                     <p>{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))}>
                     <img src='icons/chevRight.jpg'/></button>
-                <button onClick={() => dispatch(addToCart())}>
+                <button onClick={() => dispatch(addToCart(props.id, thisItemQuant))}>
                     <img src='icons/cart.png' />
                 </button>
             </div>

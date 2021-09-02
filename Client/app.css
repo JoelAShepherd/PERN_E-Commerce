@@ -96,6 +96,10 @@ body {
     justify-content: space-around;
 }
 
+.cartItemQuantContainer {
+    display: flex;
+}
+
 .cartFooter {
     border-top: 4px solid green;
     height: 30px;
