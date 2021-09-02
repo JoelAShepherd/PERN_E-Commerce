@@ -14,6 +14,11 @@ export const fakeAPISlice = createSlice({
     reducers: {}
 })
 
+export function getUnitPrice(state, unitID){
+    let product = state.products.products.find(({id}) => id == unitID)
+    return product.unitPrice;
+}
+
 export const selectProducts = state => state.products.products;
 
 export default fakeAPISlice.reducer

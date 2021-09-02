@@ -40,7 +40,7 @@ export default function Item (props) {
                     <p>{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))}>
                     <img src='icons/chevRight.jpg'/></button>
-                <button onClick={() => dispatch(addToCart(props.id, thisItemQuant))}>
+                <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProduct.unitPrice))}>
                     <img src='icons/cart.png' />
                 </button>
             </div>

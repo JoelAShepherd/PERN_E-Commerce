@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCartQuantity } from './cart/cartSlice';
+import { selectCartQuantity, selectCartTotalPrice } from './cart/cartSlice';
 
 export default function Header () {
     const cartQuant = useSelector(selectCartQuantity)
+    const cartTotal = useSelector(selectCartTotalPrice)
 
     return (
         <div className='header'>
@@ -19,7 +20,7 @@ export default function Header () {
                         <div className='cartCountCont'>
                             <div className='cartcount'>{cartQuant}</div>
                         </div>
-                        <div className='cartsum'>£1.50</div>
+                        <div className='cartsum'>{cartTotal}</div>
                     </div>
                 </Link>
             </div>
