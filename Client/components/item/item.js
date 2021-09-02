@@ -1,6 +1,10 @@
 import React from 'react';
+import { useSelector} from 'react-redux';
+import { selectTest } from './itemsSlice';
 
 export default function Item (props) {
+    const testVal = useSelector(selectTest)
+
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
@@ -9,7 +13,7 @@ export default function Item (props) {
             </div>
             <div className='itemSelectContainer'>
                 <img src='icons/chevLeft.jpg' />
-                <p>5</p>
+                <p>{testVal}</p>
                 <img src='icons/chevRight.jpg' />
                 <img src='icons/cart.png' />
             </div>

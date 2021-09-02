@@ -14,8 +14,8 @@ function App () {
                 <p>Here we go!</p>
                 <p>Here we go again!</p>
                 <div className='outerItemContainer'>
-                    <Item id="A"/>
-                    <Item id="B"/>
+                    <Item id="1"/>
+                    <Item id="2"/>
                 </div> 
             </div>
             <Footer />
