@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import items from './components/item/itemsSlice';
 import cart from './components/cart/cartSlice';
-import products from './api/fakeAPI';
+import products from './components/products/productsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,3 +10,5 @@ export const store = configureStore({
        products: products
     }
 })
+
+//

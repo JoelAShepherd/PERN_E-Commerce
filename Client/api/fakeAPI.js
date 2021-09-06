@@ -19,6 +19,6 @@ export function getUnitPrice(state, unitID){
     return product.unitPrice;
 }
 
-export const selectProducts = state => state.products.products;
+//export const selectProducts = state => state.products.products;
 
 export default fakeAPISlice.reducer

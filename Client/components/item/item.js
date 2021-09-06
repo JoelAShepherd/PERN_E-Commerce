@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectItems } from './itemsSlice';
-import { selectProducts } from '../../api/fakeAPI';
+import { selectProducts } from '../products/productsSlice';
 import { addToCart } from '../cart/cartSlice';
 
 export default function Item (props) {
