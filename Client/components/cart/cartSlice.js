@@ -19,6 +19,10 @@ export const cartSlice = createSlice({
                 state.cartItems.push({id: action.payload.id, quantity: action.payload.quantity})
             }
             state.totalItems += action.payload.quantity;
+            console.log('addItemsToCart inspection: ')
+            console.log('action.payload', action.payload)
+            console.log('action.payload.unitPrice', action.payload.unitPrice)
+            console.log('Typeof', typeof action.payload.unitPrice)
             state.totalPrice += (action.payload.quantity * action.payload.unitPrice);
             
         },

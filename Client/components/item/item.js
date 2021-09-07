@@ -7,15 +7,13 @@ import { addToCart } from '../cart/cartSlice';
 export default function Item (props) {
     const dispatch = useDispatch();
     const itemsArr = useSelector(selectItems)
-    //console.log('Items arr', itemsArr)
-    //console.log('This prop id :', props.id)
+    
     const thisItem = itemsArr.find(({id}) => id === props.id)
-    //console.log('this item: ', thisItem)
+    
     const thisItemQuant = thisItem.quantInComp
     const productsArr = useSelector(selectProducts)
-    console.log('** products Arr', productsArr)
     const thisProduct = productsArr.find(({product_id}) => product_id == props.id)
-    console.log('**** this product', thisProduct)
+    const thisProdUnitPrice = parseFloat(thisProduct.unit_price)
 
 
     function changeItemQuant(bool){
@@ -45,7 +43,7 @@ export default function Item (props) {
                     <p>{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))}>
                     <img src='icons/chevRight.jpg'/></button>
-                <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProduct.unitPrice))}>
+                <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProdUnitPrice))}>
                     <img src='icons/cart.png' />
                 </button>
             </div>

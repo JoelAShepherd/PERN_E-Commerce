@@ -25,4 +25,4 @@ export default function Cart() {
             <CartFooter />
         </div>
     )
-}
+} 

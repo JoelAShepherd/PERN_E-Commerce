@@ -7,11 +7,14 @@ import { addToCart, removeFromCart } from './cartSlice';
 export default function CartItem (props) {
     const dispatch = useDispatch()
     const productArr = useSelector(selectProducts)
-    const thisProduct = productArr.find(({id}) => id == props.id)
+    const thisProduct = productArr.find(({product_id}) => product_id == props.id)
+    
     const cartArr = useSelector(selectCartItems)
     const thisItem = cartArr.find(({id}) => id == props.id)
+    const thisProdUnitPrice = parseFloat(thisProduct.unit_price)
+    
 
-    const subtotal = (thisItem.quantity * thisProduct.unitPrice).toFixed(2);
+    const subtotal = (thisItem.quantity * thisProdUnitPrice).toFixed(2);
 
     
 
@@ -19,13 +22,13 @@ export default function CartItem (props) {
         <div className='cartItemContainer'>
             <p>{thisProduct.name}</p>
             <div className="cartItemQuantContainer">
-                <button onClick={() => dispatch(removeFromCart(props.id, false, thisProduct.unitPrice))}>-</button>
+                <button onClick={() => dispatch(removeFromCart(props.id, false, thisProdUnitPrice))}>-</button>
                     <p>{thisItem.quantity}</p>
-                <button onClick={() => dispatch(addToCart(props.id, 1, thisProduct.unitPrice))}>+</button>
+                <button onClick={() => dispatch(addToCart(props.id, 1, thisProdUnitPrice))}>+</button>
             </div>
-            <p>{thisProduct.unitPrice}</p>
+            <p>{thisProdUnitPrice}</p>
             <p>{subtotal}</p>
-            <button onClick={() => dispatch(removeFromCart(props.id, true, thisProduct.unitPrice))}>X</button>
+            <button onClick={() => dispatch(removeFromCart(props.id, true, thisProdUnitPrice))}>X</button>
         </div>
     )
 }
