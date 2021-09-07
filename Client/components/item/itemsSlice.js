@@ -4,16 +4,8 @@ export const itemsSlice = createSlice({
     name: 'items',
     initialState: {
         test: 4,
-        items: [
-            {id:1, quantInComp: 1},
-            {id:2, quantInComp: 2},
-            {id:3, quantInComp: 3},
-            {id:4, quantInComp: 4},
-            {id:5, quantInComp: 5}
-            //quantInComp is the quantity in the item component that the
-            //user can change so as to add that quantity to the basket.
-            //It does not represent the quantity in the database. 
-        ]
+        testArr: [],
+        items: []
     },
     reducers: {
         addItem(state, action){
@@ -37,6 +29,9 @@ export const itemsSlice = createSlice({
 
 console.log(itemsSlice.actions)
 
-export const selectItems = state => state.items;
+export const selectItems = state => state.items.items;
+export const selectItemsState = state => state.items;
+export const {addItem} = itemsSlice.actions;
+console.log('ADD ITEM ACTION:  ', addItem)
 
 export default itemsSlice.reducer;

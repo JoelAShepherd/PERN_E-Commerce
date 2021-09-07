@@ -7,10 +7,10 @@ import { addToCart } from '../cart/cartSlice';
 export default function Item (props) {
     const dispatch = useDispatch();
     const itemsArr = useSelector(selectItems)
-    console.log('Items arr', itemsArr)
-    console.log('This prop id :', props.id)
-    const thisItem = itemsArr.items.find(({id}) => id === props.id)
-    console.log('this item: ', thisItem)
+    //console.log('Items arr', itemsArr)
+    //console.log('This prop id :', props.id)
+    const thisItem = itemsArr.find(({id}) => id === props.id)
+    //console.log('this item: ', thisItem)
     const thisItemQuant = thisItem.quantInComp
     const productsArr = useSelector(selectProducts)
     console.log('** products Arr', productsArr)
