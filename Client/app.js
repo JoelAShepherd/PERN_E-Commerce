@@ -5,10 +5,14 @@ import Footer from './components/footer';
 import Products from './components/products/products';
 import Cart from './components/cart/cart'
 
+import { useDispatch } from 'react-redux';
+import { getProductsThunk } from './components/products/productsSlice';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
 function App () {
+    const dispatch = useDispatch();
+    dispatch(getProductsThunk());
     return (
         <Router>
             <div className="App">

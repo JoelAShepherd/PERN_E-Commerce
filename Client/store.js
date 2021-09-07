@@ -1,3 +1,4 @@
+import thunk from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
 import items from './components/item/itemsSlice';
 import cart from './components/cart/cartSlice';
@@ -8,7 +9,7 @@ export const store = configureStore({
        items: items,
        cart: cart,
        products: products
-    }
+    },
+    middleware: [thunk]
 })
 
-//

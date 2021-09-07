@@ -7,10 +7,15 @@ import { addToCart } from '../cart/cartSlice';
 export default function Item (props) {
     const dispatch = useDispatch();
     const itemsArr = useSelector(selectItems)
+    console.log('Items arr', itemsArr)
+    console.log('This prop id :', props.id)
     const thisItem = itemsArr.items.find(({id}) => id === props.id)
+    console.log('this item: ', thisItem)
     const thisItemQuant = thisItem.quantInComp
     const productsArr = useSelector(selectProducts)
-    const thisProduct = productsArr.find(({id}) => id == props.id)
+    console.log('** products Arr', productsArr)
+    const thisProduct = productsArr.find(({product_id}) => product_id == props.id)
+    console.log('**** this product', thisProduct)
 
 
     function changeItemQuant(bool){
