@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export const itemsSlice = createSlice({
     name: 'items',
     initialState: {
-        test: 4,
-        testArr: [],
         items: []
     },
     reducers: {

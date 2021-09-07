@@ -2,45 +2,35 @@ import React, { useEffect } from 'react';
 import Item from '../item/item';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts, selectProductsState} from './productsSlice';
-import { addItem, selectItemsState, selectItems } from '../item/itemsSlice';
+import { addItem, selectItems } from '../item/itemsSlice';
 
 
 
 export default function Products () {
     const dispatch = useDispatch();
-    console.log('products OK');
-    
-
-    
 
     const productsArr = useSelector(selectProducts)
     const productsState = useSelector(selectProductsState);
-    const itemsState = useSelector(selectItemsState)
     const items = useSelector(selectItems)
-
-    console.log('******* ITEMS state pre POP', itemsState)
-    console.log('* Items arr', items)
-
 
 
     const error = productsState.resultsError;
     const loading = productsState.resultsLoading;
     const hasData = productsState.data;
 
-    const addItemToStore = (productID) => {
+    const addItemToStore = (productID) => { //Adds product as item to the store
         let item = {id: productID, quantInComp: 5}
         dispatch(addItem(item));
     }
 
     const populateStore = arr => {
-        for(let i=0; i< arr.length; i++){
+        for(let i=0; i< arr.length; i++){ // Checks if there is an entry for the product as an item
             if (items.find(({id})=> id === arr[i].product_id)){
                 return
-            } else {
+            } else { // If no existing entry, adds it to the store
                 addItemToStore(arr[i].product_id)
             }
         }
-        console.log('******* ITEMS AFTRE POP', items)
     }
 
     
