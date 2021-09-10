@@ -13,7 +13,11 @@ export default function Header () {
                 <h1>PERN store</h1>
             </Link>
             <div className='headerContent'>
-                <div className='login'>login</div>
+                <div className='login'>
+                    <Link to='/login'>
+                        login
+                    </Link>
+                </div>
                 <Link to='/cart'>
                     <div className='cart'>
                         Cart

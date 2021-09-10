@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const pool = require('./database/db');
 
+const PORT = 5000;
+
 //middleware
 app.use(cors());
 app.use(express.json());
@@ -22,6 +24,6 @@ app.get('/products', async(req, res) => {
 })
 
 
-app.listen(5000, () => {
-    console.log('Server has started on port 5000');
+app.listen(PORT, () => {
+    console.log(`Server has started on port ${PORT}`);
 });

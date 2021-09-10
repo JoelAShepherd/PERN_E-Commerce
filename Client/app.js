@@ -4,6 +4,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import Products from './components/products/products';
 import Cart from './components/cart/cart'
+import Login from './components/login/login'
 
 import { useDispatch } from 'react-redux';
 import { getProductsThunk } from './components/products/productsSlice';
@@ -26,6 +27,10 @@ function App () {
                         <Route path='/cart'>
                             <h2>Cart</h2>
                             <Cart />
+                        </Route>
+                        <Route path='/login'>
+                            <h2>Login</h2>
+                            <Login />
                         </Route>
                     </Switch> 
                 </div>
