@@ -3,6 +3,8 @@ const app = express();
 const cors = require('cors');
 const pool = require('./database/db');
 
+
+
 const PORT = 5000;
 
 //middleware
@@ -10,6 +12,12 @@ app.use(cors());
 app.use(express.json());
 
 //ROUTES//
+
+//routes
+const authRoutes = require('./routes/auth-routes')
+
+app.use('/auth', authRoutes);
+
 
 //GET products info
 app.get('/products', async(req, res) => {
