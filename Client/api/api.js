@@ -1,12 +1,14 @@
 const testData = [{data1: 1, data2: 2, data3: 3}]
 
 
+const root = 'http://localhost:5000'
+
 export const api = {
     async getProducts(){
         console.log('api called');
         try{
             console.log('api try called');
-            const response = await fetch('http://localhost:5000/products');
+            const response = await fetch((root + '/products'));
             if (response.ok){
                 const jsonResponse = await Promise.resolve(response.json());
                 return jsonResponse;
@@ -16,8 +18,21 @@ export const api = {
             console.log(err);
         }
     },
-    getTest(){
-        return testData
+    async registerUser(name, email, password){
+        console.log('register user called')
+        try{
+            const newUser = {name: name, email: email, password:password};
+            fetch('http://localhost:5000/auth/register', {
+            'method': 'POST',
+            'headers': {
+              'Content-type': 'application/json'
+            },
+            'body': JSON.stringify(newUser)
+            }).then(response => console.log('Response: ', response))
+            console.log('end of try register user')
+        } catch(err) {
+            console.log(err.message)
+        }
     }
 };
 
