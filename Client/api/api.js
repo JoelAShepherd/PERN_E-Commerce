@@ -28,7 +28,18 @@ export const api = {
               'Content-type': 'application/json'
             },
             'body': JSON.stringify(newUser)
-            }).then(response => console.log('Response: ', response))
+            }).then(response => {
+                if (response.ok){
+                    console.log('response ok!')
+                    console.log(response)
+                    return response.json().then(token => {
+                        if (token){
+                            console.log(token)
+                        }
+                    })
+                    //dipatch asyncThunk here
+                }
+            })
             console.log('end of try register user')
         } catch(err) {
             console.log(err.message)

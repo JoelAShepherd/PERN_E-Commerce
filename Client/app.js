@@ -5,6 +5,7 @@ import Footer from './components/footer';
 import Products from './components/products/products';
 import Cart from './components/cart/cart'
 import Login from './components/login/login'
+import Dashboard from './components/dashboard/dasboard';
 
 import { useDispatch } from 'react-redux';
 import { getProductsThunk } from './components/products/productsSlice';
@@ -31,6 +32,9 @@ function App () {
                         <Route path='/login'>
                             <h2>Login</h2>
                             <Login />
+                        </Route>
+                        <Route path='/dashboard'>
+                            <Dashboard />
                         </Route>
                     </Switch> 
                 </div>

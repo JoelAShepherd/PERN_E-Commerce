@@ -11,6 +11,9 @@ const clientPage = 'http://localhost:8080'
 
 authRouter.use(cors())
 
+authRouter.get('/', (req,res) => {
+    res.send('request worked')
+})
 
 //auth login
 authRouter.get('/login', (req, res) => {
@@ -32,7 +35,7 @@ authRouter.post('/register', async (req, res) => {
                 console.log(error.message)
             } 
 
-            res.status(201).send(results)
+            res.status(201).send({token: 'test123'})
         }
         
         )
