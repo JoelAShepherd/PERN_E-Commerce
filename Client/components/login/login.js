@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectLoginStatus } from "./loginSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { selectLoginStatus, selectLoginState } from "./loginSlice";
 import { api } from "../../api/api";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { login } from "./loginSlice";
+import Dashboard from "../dashboard/dasboard";
 
 
 const serverRegister = 'http://localhost:5000/auth/register'
@@ -10,14 +12,35 @@ const serverRegister = 'http://localhost:5000/auth/register'
 const handleSubmitRegister = event =>{
     event.preventDefault();
     const { name, email, password } = event.target
-    console.log('in submit: ', name.value)
     api.registerUser(name.value, email.value, password.value)
     
 }
 
+
+
 const Login = () => {
-    const status = useSelector(selectLoginStatus)
+    const dispatch = useDispatch();
+    const loginStatus = useSelector(selectLoginStatus)
     const { path } = useRouteMatch();
+
+    const handleSumbitLogin = async (event) => {
+    
+        event.preventDefault();
+        
+        const { email, password } = event.target;
+        console.log('Handling login ')
+        
+        const result = await api.loginUser(email.value, password.value)
+        const token = result;
+        console.log('Token?', token)
+    }
+
+    if (loginStatus) {
+        const {name} = useSelector(selectLoginState); 
+        return(
+            <Dashboard name={name} />
+        )
+    }
 
     return(
         <Router>
@@ -26,7 +49,7 @@ const Login = () => {
                     <div className='loginContianer'>
                         <div className='pgLogin'>
                             <h3>pgLogin</h3>
-                            <form action='/auth/login' method='POST'>
+                            <form onSubmit={handleSumbitLogin}>
                             <div>
                                 <label htmlFor='email'>Email</label>
                                 <input type='email' id='email' name='email' required />
@@ -45,7 +68,6 @@ const Login = () => {
                         </div>
                         <div className='status'>
                             <p>Status: </p>
-                            <p>{String(status)}</p>
                         </div>
                         <p>Not a user? <Link to='/login/register'>Register here</Link> </p>
                     </div>

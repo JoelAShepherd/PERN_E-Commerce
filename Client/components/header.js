@@ -2,10 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCartQuantity, selectCartTotalPrice } from './cart/cartSlice';
+import { selectLoginStatus } from './login/loginSlice';
 
 export default function Header () {
     const cartQuant = useSelector(selectCartQuantity)
     const cartTotal = useSelector(selectCartTotalPrice)
+    const loggedIn = useSelector(selectLoginStatus)
+
+    let logInButton;
+
+    if (loggedIn) {
+        logInButton = 'My Dashboard'
+    } else {
+        logInButton = 'Login'
+    }
 
     return (
         <div className='header'>
@@ -15,7 +25,7 @@ export default function Header () {
             <div className='headerContent'>
                 <div className='login'>
                     <Link to='/login'>
-                        login
+                        {logInButton}
                     </Link>
                 </div>
                 <Link to='/cart'>
