@@ -4,6 +4,8 @@
 const root = 'http://localhost:5000'
 
 export const api = {
+
+    //Return array of products in the database
     async getProducts(){
         try{
             const response = await fetch((root + '/products'));
@@ -20,7 +22,7 @@ export const api = {
 
 
 
-
+    //Add a new user to the database
     async registerUser(name, email, password){
         
         console.log('register user called')
@@ -60,7 +62,7 @@ export const api = {
 
 
 
-
+    //Log in pre-existing user
     async loginUser(email, password){
         console.log('api login called')
         const userCreds = {email: email, password: password}

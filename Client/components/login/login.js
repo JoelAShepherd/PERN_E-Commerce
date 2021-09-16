@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLoginStatus, selectLoginState } from "./loginSlice";
+import { selectLoginStatus } from "./loginSlice";
 import { api } from "../../api/api";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { login } from "./loginSlice";
