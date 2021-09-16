@@ -1,5 +1,5 @@
 
-
+import { toast } from "react-toastify";
 
 const root = 'http://localhost:5000'
 
@@ -38,12 +38,14 @@ export const api = {
             const parseRegResponse = await regResponse.json()
             console.log('ParseRegResp: ', parseRegResponse)
 
-            //TODO: check for errors
+            if (parseRegResponse === 'User already exists'){
+                toast('A user with that email address already exists')
+                return false
+            }
 
             localStorage.setItem('token', parseRegResponse.token)
+            toast("You've made a new account!")
             return true
-
-            console.log('end of try register user')
         } catch(err) {
             console.log(err.message)
         }
@@ -79,9 +81,19 @@ export const api = {
             console.log('Token in API', parseRes)
 
             if (parseRes === 'Email or password is incorrect'){
-                //TODO: Display error to user
+                toast('Email or password is incorrect. Please try again')
                 return false
             }
+            if (parseRes === 'Invalid Email'){
+                toast('Email or password is incorrect. Please try again')
+                return false
+            }
+            if (parseRes === 'Missing Credentials'){
+                toast('Please enter all the required information')
+                return false
+            }
+
+            
            
             localStorage.setItem("token", parseRes.token)
             return true;
@@ -103,7 +115,7 @@ export const api = {
 
 
 
-
+    //get username from server based on the jwt token provided
     async getUserName(){
         console.log('get user name called in API')
         
@@ -122,7 +134,30 @@ export const api = {
         } catch(err){
             console.log(err)
         }
+    },
+
+    //on page load check if the user is already logged in
+    async checkIfLoggedIn(){
+        console.log('API checkIfLoggedIn called');
+        try{  
+            const token = localStorage.getItem('token')
+            const response = await fetch('http://localhost:5000/auth/verify',
+            {
+                'method': 'GET',
+                'headers': {
+                    'token': token
+                }
+            })
+            const parseRes = await response.json()
+            console.log('API checkifloggedin result', parseRes)
+            return parseRes;
+
+        } catch(err){
+            console.log(err.message)
+        }
     }
+
+
 };
 
 console.log('api self-check', api.getProducts())

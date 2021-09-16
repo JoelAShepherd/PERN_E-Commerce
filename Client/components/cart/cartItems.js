@@ -16,7 +16,7 @@ export default function CartItem (props) {
 
     const subtotal = (thisItem.quantity * thisProdUnitPrice).toFixed(2);
 
-    
+    const formatedUnitPrice = `£${thisProdUnitPrice.toFixed(2)}`
 
     return (
         <div className='cartItemContainer'>
@@ -26,8 +26,8 @@ export default function CartItem (props) {
                     <p>{thisItem.quantity}</p>
                 <button onClick={() => dispatch(addToCart(props.id, 1, thisProdUnitPrice))}>+</button>
             </div>
-            <p>{thisProdUnitPrice}</p>
-            <p>{subtotal}</p>
+            <p>{formatedUnitPrice}</p>
+            <p>£{subtotal}</p>
             <button onClick={() => dispatch(removeFromCart(props.id, true, thisProdUnitPrice))}>X</button>
         </div>
     )

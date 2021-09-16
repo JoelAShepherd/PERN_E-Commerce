@@ -5,6 +5,8 @@ import { api } from "../../api/api";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { login } from "./loginSlice";
 import Dashboard from "../dashboard/dasboard";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -50,15 +52,14 @@ const Login = () => {
     }
         
     if (loginStatus){
-
+            console.log('if login status')
             try{
-                
-                
                 return (
-                    <Dashboard />
+                        <Dashboard />
                 )
             } catch(err){
                 console.log(err.message)
+                
             }
         }
     
@@ -91,6 +92,7 @@ const Login = () => {
                             <p>Status: </p>
                         </div>
                         <p>Not a user? <Link to='/login/register'>Register here</Link> </p>
+                        
                     </div>
                 </Route>
                 <Route path={`${path}/register`}>
@@ -114,6 +116,7 @@ const Login = () => {
                         <div>
                             <p>Already a member? <Link to='/login'> Log in here</Link></p>
                         </div>
+                        
                     </div>
                 </Route>
             </Switch>
