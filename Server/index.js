@@ -3,6 +3,11 @@ const app = express();
 const cors = require('cors');
 const pool = require('./database/db');
 
+//routes
+const authRoutes = require('./routes/auth-routes');
+const dashboard = require('./routes/dashboard');
+
+
 
 
 const PORT = 5000;
@@ -13,10 +18,9 @@ app.use(express.json());
 
 //ROUTES//
 
-//routes
-const authRoutes = require('./routes/auth-routes')
 
 app.use('/auth', authRoutes);
+app.use('/dashboard', dashboard);
 
 
 //GET products info

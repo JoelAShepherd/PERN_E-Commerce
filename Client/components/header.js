@@ -2,20 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectCartQuantity, selectCartTotalPrice } from './cart/cartSlice';
-import { selectLoginStatus } from './login/loginSlice';
+import HeaderLoginButton from './login/headerLoginButton';
 
 export default function Header () {
     const cartQuant = useSelector(selectCartQuantity)
     const cartTotal = useSelector(selectCartTotalPrice)
-    const loggedIn = useSelector(selectLoginStatus)
-
-    let logInButton;
-
-    if (loggedIn) {
-        logInButton = 'My Dashboard'
-    } else {
-        logInButton = 'Login'
-    }
+    
 
     return (
         <div className='header'>
@@ -23,11 +15,7 @@ export default function Header () {
                 <h1>PERN store</h1>
             </Link>
             <div className='headerContent'>
-                <div className='login'>
-                    <Link to='/login'>
-                        {logInButton}
-                    </Link>
-                </div>
+                <HeaderLoginButton />
                 <Link to='/cart'>
                     <div className='cart'>
                         Cart

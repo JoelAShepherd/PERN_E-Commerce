@@ -43,27 +43,50 @@ export const api = {
     async loginUser(email, password){
         console.log('api login called')
         const userCreds = {email: email, password: password}
-        let token;
+        
         try{
-            fetch('http://localhost:5000/auth/login', {
+            const response = await fetch('http://localhost:5000/auth/login', {
                 'method': 'POST',
                 'headers': {
                     'Content-type': 'application/json'
                   },
                   'body': JSON.stringify(userCreds)
-            }).then(response => {
-                console.log(response);
-                if (response.ok){
-                        response.json().then(token => {
-                            console.log('Login token from API', token)
-                        })  
-                }
             })
+            const parseRes = await response.json();
+            console.log('Token in API', parseRes)
+
+            if (parseRes === 'Email or password is incorrect'){
+                //TODO: Display error to user
+                return false
+            }
+           
+            localStorage.setItem("token", parseRes.token)
+            return true;
+            
 
         } catch(err){
             console.log(err)
         }
          
+    },
+    async getUserName(){
+        console.log('get user name called in API')
+        
+        try {
+            const token = localStorage.getItem('token')
+            const response = await fetch('http://localhost:5000/dashboard', {
+                'method': 'GET',
+                'headers': {
+                    'token': token
+                }
+            }
+            )
+            const parseRes = await response.json();
+            console.log('Username from API: ', parseRes)
+            return parseRes
+        } catch(err){
+            console.log(err)
+        }
     }
 };
 

@@ -24,22 +24,37 @@ const Login = () => {
     const { path } = useRouteMatch();
 
     const handleSumbitLogin = async (event) => {
-    
         event.preventDefault();
-        
         const { email, password } = event.target;
         console.log('Handling login ')
+
+        try{
+            const result = await api.loginUser(email.value, password.value)
+            console.log('result in login component', result);
+            if (result){
+                console.log('Result True!!!')
+                const userName = await api.getUserName();
+                console.log(userName)
+                dispatch(login(userName.user_name))
+            }
+        } catch(err){
+            console.error(err.message);
+        }    
         
-        const result = await api.loginUser(email.value, password.value)
-        const token = result;
-        console.log('Token?', token)
+        
     }
 
-    if (loginStatus) {
-        const {name} = useSelector(selectLoginState); 
-        return(
-            <Dashboard name={name} />
-        )
+    if (loginStatus){
+
+        try{
+            
+            
+            return (
+                <Dashboard />
+            )
+        } catch(err){
+            console.log(err.message)
+        }
     }
 
     return(

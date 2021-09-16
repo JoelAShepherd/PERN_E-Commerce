@@ -4,6 +4,8 @@ const cors = require('cors');
 const bcrypt = require('bcrypt')
 const pool = require('../database/db');
 const jwtGenerator = require('../utils/jwtGenerator')
+const validInfo = require('../middleware/validinfo')
+const authorization = require('../middleware/authorization')
 
 
 authRouter.use(express.urlencoded({ extended: false}))
@@ -14,7 +16,7 @@ authRouter.use(cors())
 
 
 //register new user
-authRouter.post('/register', async (req, res) => {
+authRouter.post('/register', validInfo, async (req, res) => {
     console.log('Server recieves POST to register new user')
     try {
         //console.log('Req Body :', req.body)
@@ -53,7 +55,7 @@ authRouter.post('/register', async (req, res) => {
 })
 
 //auth login
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', validInfo, async (req, res) => {
     //log into pg user system
     console.log('Server reieves login POST request')
     try{
@@ -94,7 +96,14 @@ authRouter.post('/login', async (req, res) => {
     
 })
 
-
+authRouter.get('/verify', authorization, async (req, res) => {
+    try{
+        res.json(true)
+    } catch(error) {
+        console.log(error.message)
+        res.status(500).send('Server error')
+    }
+})
 
 
 //auth with google
