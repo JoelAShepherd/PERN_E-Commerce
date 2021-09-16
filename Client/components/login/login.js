@@ -7,16 +7,6 @@ import { login } from "./loginSlice";
 import Dashboard from "../dashboard/dasboard";
 
 
-const serverRegister = 'http://localhost:5000/auth/register'
-
-const handleSubmitRegister = event =>{
-    event.preventDefault();
-    const { name, email, password } = event.target
-    api.registerUser(name.value, email.value, password.value)
-    
-}
-
-
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -44,18 +34,34 @@ const Login = () => {
         
     }
 
+    const handleSubmitRegister = async (event) =>{
+        event.preventDefault();
+        const { name, email, password } = event.target
+        try{
+            const result = await api.registerUser(name.value, email.value, password.value)
+            console.log('reg result in login component', result)
+            if (result){
+                console.log('Reg result true!')
+                dispatch(login(name.value))
+            }
+        } catch(err){
+            console.error(err.message);
+        }   
+    }
+        
     if (loginStatus){
 
-        try{
-            
-            
-            return (
-                <Dashboard />
-            )
-        } catch(err){
-            console.log(err.message)
+            try{
+                
+                
+                return (
+                    <Dashboard />
+                )
+            } catch(err){
+                console.log(err.message)
+            }
         }
-    }
+    
 
     return(
         <Router>

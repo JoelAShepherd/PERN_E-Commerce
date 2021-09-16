@@ -16,30 +16,51 @@ export const api = {
             console.log(err);
         }
     },
+
+
+
+
+
     async registerUser(name, email, password){
         
         console.log('register user called')
         try{
             const newUser = {name: name, email: email, password:password};
-            fetch('http://localhost:5000/auth/register', {
+            const regResponse = await fetch('http://localhost:5000/auth/register', {
             'method': 'POST',
             'headers': {
               'Content-type': 'application/json'
             },
             'body': JSON.stringify(newUser)
-            }).then(response => {
-                if (response.ok){
-                    console.log('register response ok!')
-                    console.log('response: ', response)
-                    return response.json().then(token => console.log(token))
-                    
-                }
             })
+            const parseRegResponse = await regResponse.json()
+            console.log('ParseRegResp: ', parseRegResponse)
+
+            //TODO: check for errors
+
+            localStorage.setItem('token', parseRegResponse.token)
+            return true
+
             console.log('end of try register user')
         } catch(err) {
             console.log(err.message)
         }
     },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     async loginUser(email, password){
         console.log('api login called')
         const userCreds = {email: email, password: password}
@@ -69,6 +90,18 @@ export const api = {
         }
          
     },
+
+
+
+
+
+
+
+
+
+
+
+
     async getUserName(){
         console.log('get user name called in API')
         
