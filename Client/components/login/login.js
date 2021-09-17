@@ -5,6 +5,7 @@ import { api } from "../../api/api";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { login } from "./loginSlice";
 import Dashboard from "../dashboard/dasboard";
+import ThirdPartyLogin from "./thirdPartyLogin";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -86,7 +87,7 @@ const Login = () => {
                         </div>
                         <div className='thirdPartyLogin'>
                             <h3>3rd Party</h3>
-                            
+                            <ThirdPartyLogin />
                         </div>
                         <div className='status'>
                             <p>Status: </p>

@@ -14,6 +14,7 @@ import { login } from './components/login/loginSlice';
 import { useDispatch } from 'react-redux';
 import { getProductsThunk } from './components/products/productsSlice';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { LoginSuccess } from './components/login/loginSuccess';
 
 
 function App () {
@@ -47,6 +48,7 @@ function App () {
                             <h2>Cart</h2>
                             <Cart />
                         </Route>
+                        <Route exact path='/login/success' component={LoginSuccess}/>
                         <Route path='/login'>
                             <h2>Login</h2>
                             <Login />
@@ -54,6 +56,7 @@ function App () {
                         <Route path='/dashboard'>
                             <Dashboard />
                         </Route>
+                        
                     </Switch> 
                     <ToastContainer position="top-center"
                                     autoClose={3000}
