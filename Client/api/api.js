@@ -135,11 +135,32 @@ export const api = {
                 }
             }
             )
-            const parseRes = await response.json();
-            console.log('Username from API: ', parseRes)
-            return parseRes
+            const parsedRes = await response.json();
+            console.log('Username from API: ', parsedRes)
+            return parsedRes
         } catch(err){
             console.log(err)
+        }
+    },
+
+    //get order history from the db using the token 
+    async getOrderHistory(){
+        console.log('api getOrderHistory called')
+
+        try {
+            const token = localStorage.getItem('token')
+            const response = await fetch('http://localhost:5000/dashboard/orders', {
+                'method': 'GET',
+                'headers': {
+                    'token': token
+                }
+            })
+
+            const parsedRes = response.json()
+            console.log('OH response from API: ', parsedRes)
+            return parsedRes
+        } catch(err){
+            console.log(err.message)
         }
     },
 
@@ -155,9 +176,11 @@ export const api = {
                     'token': token
                 }
             })
-            const parseRes = await response.json()
-            console.log('API checkifloggedin result', parseRes)
-            return parseRes;
+            const parsedRes = Promise.resolve(response.json())
+            
+            console.log('API checkifloggedin result', parsedRes)
+            
+            return parsedRes;
 
         } catch(err){
             console.log(err.message)
