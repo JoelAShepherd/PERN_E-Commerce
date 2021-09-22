@@ -42,6 +42,13 @@ export const api = {
                 toast('A user with that email address already exists')
                 return false
             }
+            if (parseRegResponse === 'Invalid Email'){
+                toast('The email address you provided is invalid, please try again')
+                return false;
+            }
+            if (parseRegResponse === 'Missing Credentials'){
+                return false;
+            }
 
             localStorage.setItem('token', parseRegResponse.token)
             toast("You've made a new account!")
