@@ -5,7 +5,7 @@ const pool = require('./database/db');
 const morgan = require('morgan')
 const helmet = require('helmet')
 const passport = require('passport');
-const isGoogleAuthed = require('./middleware/google_auth')
+
 const cookieSession = require('cookie-session')
 require('dotenv').config();
 require('./routes/SSO/passportGoogleSSO')
@@ -46,7 +46,7 @@ app.use('/google', googleRoutes)
 
 
 //GET products info
-app.get('/products', isGoogleAuthed, async(req, res) => {
+app.get('/products', async(req, res) => {
     console.log('Server recieves GET');
     try{
         const allProducts = await pool.query("SELECT * FROM products");
