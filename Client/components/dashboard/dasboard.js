@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUserName } from '../login/loginSlice';
 import { api } from '../../api/api';
 import { uploadOrders, selectOrders } from './dashboardSlice';
+import CustomerOrder from './orders/order';
 
 export default function Dashboard() {
   const dispatch = useDispatch()
@@ -23,7 +24,9 @@ export default function Dashboard() {
       <p>Hello {userName}</p>
       <h3>Order History</h3>
       <button onClick={OHbuttonClick}>OH</button>
-      <p>{JSON.stringify(ordersFetched)}</p>
+      {ordersFetched ? (ordersFetched.map((order, index) => 
+        <CustomerOrder key={index} order={order} /> 
+      )) : <p>No order history yet</p>}
     </div>
   );
 }

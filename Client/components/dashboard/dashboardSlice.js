@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 export const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState: {
-        orders: []
+        orders: null
     },
     reducers: {
         uploadOrders(state, action){
-            state.orders.push(action.payload);
+            state.orders = action.payload
         },
         clearOrders(state){
-            state.orders=[];
+            state.orders=null;
         }
     }
 })

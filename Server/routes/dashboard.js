@@ -18,11 +18,12 @@ module.exports = router;
 
 router.get('/orders', authorization, async(req, res)=> {
     try{
+        
         const orderHistory = await pool
-        .query("SELECT order_id, json_items_ordered FROM orders WHERE user_id = $1",
+        .query("SELECT order_id, json_items_ordered, order_date, cost, order_status FROM orders WHERE user_id = $1",
         [req.user])
-        console.log('OH: ', orderHistory.rows[0])
-        res.json(orderHistory.rows[0])
+        console.log('OH: ', orderHistory.rows)
+        res.json(orderHistory.rows)
     } catch(err){
         console.log(err.message)
         res.status(500).json("Server Error On Order History")

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectLoginStatus } from './loginSlice';
 import { logout } from "./loginSlice";
+import { clearOrders } from "../dashboard/dashboardSlice";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -14,6 +15,7 @@ export default function HeaderLoginButton() {
     const handleLogout = () => {
         console.log('Handling logout')
         dispatch(logout());
+        dispatch(clearOrders());
         localStorage.removeItem('token')
         toast("You've successfully logged out")
     }
