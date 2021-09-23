@@ -7,7 +7,6 @@ const OrderItem = (item) => {
 
     return(
         <div className='orderItemContainer'>
-            <p>This is an item</p>
             <p>{product_name}</p>
             <p>{quantity}</p>
         </div>

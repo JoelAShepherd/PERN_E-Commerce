@@ -1,0 +1,22 @@
+.orderHistoryContainer {
+    border: 1px solid green;
+}
+
+.oHHeaders {
+    display: flex;
+    justify-content: space-around;
+}
+
+.orderContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.orderItemsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderItemContainer {
+    display: flex;
+}

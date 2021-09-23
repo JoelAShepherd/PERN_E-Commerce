@@ -6,6 +6,9 @@
 /.pnp
 .pnp.js
 
+#env
+.env
+
 # passwords
 /server/database/dbPass.js
 
