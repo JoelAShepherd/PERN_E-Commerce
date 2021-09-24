@@ -218,7 +218,19 @@ export const api = {
         })
         console.log('Transformed Orders: ', transformedOrders)
         return transformedOrders;
-      } 
+      },
+      
+      transformDate(date_string){
+          const year = date_string.slice(0,4)
+          const month = date_string.slice(5, 7)
+          const day = date_string.slice(8, 10)
+          return `${day}/${month}/${year}`
+      },
+
+      transformCost(cost){
+          const costInPounds = cost / 100
+          return `£${costInPounds.toFixed(2)}`
+      }
 
 
 };

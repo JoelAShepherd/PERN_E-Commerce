@@ -1,20 +1,30 @@
 .orderHistoryContainer {
     border: 1px solid green;
     padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 .oHHeader {
     display: flex;
 }
 
+.oHHeader p{
+    font-weight: bold;
+    font-size: large;
+}
+
 .orderContainer {
     display: flex;
-    
+    border-bottom: dotted 1px black;
 }
 
 .orderItemsContainer {
     display: flex;
     flex-direction: column;
+}
+
+.orderItemsContainer p {
+    margin: 2px;
 }
 
 .orderColumn {
