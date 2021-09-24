@@ -156,9 +156,11 @@ export const api = {
                 }
             })
 
-            const parsedRes = response.json()
+            const parsedRes = await response.json()
             console.log('OH response from API: ', parsedRes)
-            return parsedRes
+            const transformedRes = this.transformAllOrderData(parsedRes)
+            console.log('Transformed res: ', transformedRes)
+            return transformedRes
         } catch(err){
             console.log(err.message)
         }
@@ -176,7 +178,7 @@ export const api = {
                     'token': token
                 }
             })
-            const parsedRes = Promise.resolve(response.json())
+            const parsedRes = await response.json()
             
             console.log('API checkifloggedin result', parsedRes)
             
@@ -185,7 +187,38 @@ export const api = {
         } catch(err){
             console.log(err.message)
         }
-    }
+    },
+
+    transformSingleOrderData(order){
+        console.log('transform single order called');
+          const {order_id, order_date, cost, order_status} = order
+         const rawItems = order.json_items_ordered.items
+         console.log('Raw Items: ', rawItems)
+         let formatedItems = []
+         rawItems.forEach(item => {
+           formatedItems.push(`${item.product_name}: ${item.quantity}`)
+         })
+         console.log('formated items', formatedItems)
+         const formatedOrder = {
+           'order_id': order_id,
+           'json_items_ordered': formatedItems,
+           'order_date': order_date,
+           'cost': cost,
+           'order_status': order_status
+         }
+    
+         return formatedOrder
+      },
+
+      transformAllOrderData(ordersFetched){
+        console.log('Transform all orders called')
+        let transformedOrders = [];
+        ordersFetched.forEach(order => {
+          transformedOrders.push(this.transformSingleOrderData(order))
+        })
+        console.log('Transformed Orders: ', transformedOrders)
+        return transformedOrders;
+      } 
 
 
 };

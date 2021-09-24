@@ -1,15 +1,15 @@
 .orderHistoryContainer {
     border: 1px solid green;
+    padding-left: 10vw;
 }
 
-.oHHeaders {
+.oHHeader {
     display: flex;
-    justify-content: space-around;
 }
 
 .orderContainer {
     display: flex;
-    justify-content: space-around;
+    
 }
 
 .orderItemsContainer {
@@ -17,6 +17,6 @@
     flex-direction: column;
 }
 
-.orderItemContainer {
-    display: flex;
+.orderColumn {
+    width: 16vw;
 }

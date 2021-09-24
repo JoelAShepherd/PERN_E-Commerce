@@ -4,9 +4,11 @@ import { selectLoginStatus } from "./loginSlice";
 import { api } from "../../api/api";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import { login } from "./loginSlice";
+
 import Dashboard from "../dashboard/dasboard";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { uploadOrders } from "../dashboard/dashboardSlice";
 
 
 
@@ -24,10 +26,14 @@ const Login = () => {
             const result = await api.loginUser(email.value, password.value)
             console.log('result in login component', result);
             if (result){
-                console.log('Result True!!!')
+                //get username from database
                 const userName = await api.getUserName();
-                console.log(userName)
                 dispatch(login(userName.user_name))
+                
+                //get order history from db
+                console.log('Getting order history on login')
+                const oHist = await api.getOrderHistory()
+                dispatch(uploadOrders(oHist))
             }
         } catch(err){
             console.error(err.message);
@@ -50,10 +56,13 @@ const Login = () => {
             console.error(err.message);
         }   
     }
+    
+    
         
     if (loginStatus){
             console.log('if login status')
             try{
+                
                 return (
                         <Dashboard />
                 )

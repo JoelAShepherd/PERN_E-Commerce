@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from './api/api';
 import { login } from './components/login/loginSlice';
+import { uploadOrders } from './components/dashboard/dashboardSlice';
 
 import { useDispatch } from 'react-redux';
 import { getProductsThunk } from './components/products/productsSlice';
@@ -27,6 +28,9 @@ function App () {
         if (loginCheck === 'Not Authorized'){
             return
         } else if (loginCheck === true){
+            const orders = await api.getOrderHistory()
+            console.log('Orders in app on LOGIN: ', orders)
+            dispatch(uploadOrders(orders))
             const userName = await api.getUserName();
             dispatch(login(userName.user_name))
         }
