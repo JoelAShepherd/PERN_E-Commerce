@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
+    "@stripe/react-stripe-js": "^1.5.0",
+    "@stripe/stripe-js": "^1.19.0",
     "core-js": "^3.17.2",
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",

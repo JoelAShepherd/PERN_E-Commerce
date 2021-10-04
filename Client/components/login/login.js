@@ -34,6 +34,8 @@ const Login = () => {
                 console.log('Getting order history on login')
                 const oHist = await api.getOrderHistory()
                 dispatch(uploadOrders(oHist))
+
+                toast('Welcome back!')
             }
         } catch(err){
             console.error(err.message);
@@ -60,7 +62,6 @@ const Login = () => {
     
         
     if (loginStatus){
-            console.log('if login status')
             try{
                 
                 return (
