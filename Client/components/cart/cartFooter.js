@@ -4,7 +4,7 @@ import { selectCartTotalPrice } from './cartSlice';
 import { selectLoginStatus, selectProceedToPayment } from '../login/loginSlice';
 import { toast } from 'react-toastify';
 import { proceedToPayment as proceedToPaymentAction } from '../login/loginSlice';
-import Payment from './payment';
+import Payment from './payments/Payment';
 
 export default function CartFooter() {
     const cartTotal = useSelector(selectCartTotalPrice)

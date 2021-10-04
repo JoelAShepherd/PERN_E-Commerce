@@ -112,6 +112,10 @@ body {
     text-align: right;
 }
 
+.paymentsContainer {
+    text-align: left;
+}
+
 .footer {
     border-top: 2px solid blue;
 }
