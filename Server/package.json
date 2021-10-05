@@ -21,6 +21,7 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "stripe": "^8.178.0"
   }
 }

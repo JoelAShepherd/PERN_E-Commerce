@@ -2,13 +2,14 @@ import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useSelector } from 'react-redux';
 import { selectCartTotalPrice } from '../cartSlice';
+import { api } from '../../../api/api';
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
 	style: {
 		base: {
 			iconColor: "#c4f0ff",
-			color: "#fff",
+			color: "#555",
 			fontWeight: 500,
 			fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
 			fontSize: "16px",
@@ -26,8 +27,8 @@ const CARD_OPTIONS = {
 export default function PaymentForm() {
     const stripe = useStripe();
     const elements = useElements();
-    const totalToPay = useSelector(selectCartTotalPrice)
-    totalToPay = (totalToPay.toFixed(2))*100;
+    const cartTotal = useSelector(selectCartTotalPrice)
+    const totalToPay = (cartTotal.toFixed(2))*100;
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -42,7 +43,7 @@ export default function PaymentForm() {
                 //api.payment needs to be written!
                 const response = await api.payment(totalToPay, id)
 
-                if(response){
+                if(response.ok){
                     console.log("successful payment")
                 }
             } catch (error) {

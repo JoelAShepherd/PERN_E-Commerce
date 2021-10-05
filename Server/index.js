@@ -14,6 +14,7 @@ require('./routes/SSO/passportGoogleSSO')
 const authRoutes = require('./routes/auth-routes');
 const dashboard = require('./routes/dashboard');
 const googleRoutes = require('./routes/google-routes');
+const paymentRoutes = require('./routes/payment-routes');
 
 
 
@@ -42,7 +43,8 @@ app.use(passport.session())
 
 app.use('/auth', authRoutes);
 app.use('/dashboard', dashboard);
-app.use('/google', googleRoutes)
+app.use('/google', googleRoutes);
+app.use('/pay', paymentRoutes);
 
 
 //GET products info

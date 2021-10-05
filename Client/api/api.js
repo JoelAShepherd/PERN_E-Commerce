@@ -189,6 +189,26 @@ export const api = {
         }
     },
 
+    async payment(totalToPay, id){
+        console.log("API payment called");
+        try {
+            const response = await fetch('http://localhost:5000/pay', 
+            {
+                'method': 'POST',
+                'headers': {
+                    'amount': totalToPay,
+                    'id': id
+                }
+            })
+            const parsedResponse = await response.json();
+            console.log("API payment response: ", parsedResponse);
+            return parsedResponse;
+        } catch (error) {
+            console.log("API payment error:", error);
+        }
+    },
+
+
     transformSingleOrderData(order){
         console.log('transform single order called');
           const {order_id, order_date, cost, order_status} = order
@@ -232,7 +252,6 @@ export const api = {
           return `£${costInPounds.toFixed(2)}`
       }
 
-
-};
+    };
 
 console.log('api self-check', api.getProducts())
