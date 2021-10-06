@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useSelector } from 'react-redux';
-import { selectCartTotalPrice } from '../cartSlice';
+import { selectCartTotalPrice, selectCartOrder } from '../cartSlice';
 import { api } from '../../../api/api';
 
 const CARD_OPTIONS = {
@@ -29,6 +29,7 @@ export default function PaymentForm() {
     const elements = useElements();
     const cartTotal = useSelector(selectCartTotalPrice)
     const totalToPay = (cartTotal.toFixed(2))*100;
+    const order = useSelector(selectCartOrder);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -41,7 +42,7 @@ export default function PaymentForm() {
             try {
                 const {id} = paymentMethod;
                 //api.payment needs to be written!
-                const response = await api.payment(totalToPay, id)
+                const response = await api.payment(totalToPay, id, order)
 
                 if(response.ok){
                     console.log("successful payment")

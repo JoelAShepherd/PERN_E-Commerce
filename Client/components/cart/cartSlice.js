@@ -6,7 +6,8 @@ export const cartSlice = createSlice({
     initialState: {
         cartItems: [],
         totalItems: 0,
-        totalPrice: 0
+        totalPrice: 0,
+        order: {}
     },
     reducers: {
         addItemsToCart(state, action){
@@ -45,6 +46,9 @@ export const cartSlice = createSlice({
             if (state.totalPrice < 0){
                 state.totalPrice = 0;
             }
+        },
+        submitOrder(state, action){
+            state.order = action.payload;
         }
     }
 })
@@ -73,8 +77,16 @@ export function removeFromCart(id, all, unitPrice){
     }
 }
 
+export function submitOrder(order){
+    return {
+        type: "cart/submitOrder",
+        payload: order
+    }
+}
+
 export const selectCartItems = state => state.cart.cartItems;
 export const selectCartQuantity = state => state.cart.totalItems;
 export const selectCartTotalPrice = state => state.cart.totalPrice;
+export const selectCartOrder = state => state.cart.order;
 
 export default cartSlice.reducer;

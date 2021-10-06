@@ -39,7 +39,7 @@ authRouter.post('/register', validInfo, async (req, res) => {
         const newUser = await pool.query('INSERT INTO users (user_name, user_email, user_pass) VALUES($1, $2, $3) RETURNING *',
         [name, email, hashedPW]);
         
-            //res.json(newUser.rows[0]).status(201).send()
+            
         
         //generate jwt token
         

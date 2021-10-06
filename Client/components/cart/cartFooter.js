@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartTotalPrice } from './cartSlice';
+import { selectCartItems, selectCartTotalPrice, submitOrder } from './cartSlice';
 import { selectLoginStatus, selectProceedToPayment } from '../login/loginSlice';
 import { toast } from 'react-toastify';
 import { proceedToPayment as proceedToPaymentAction } from '../login/loginSlice';
 import Payment from './payments/Payment';
+import { selectProducts } from '../products/productsSlice';
+import { api } from '../../api/api';
 
 export default function CartFooter() {
     const cartTotal = useSelector(selectCartTotalPrice)
@@ -12,6 +14,8 @@ export default function CartFooter() {
     const proceedToPayment = useSelector(selectProceedToPayment)
     const dispatch = useDispatch()
     
+    const products = useSelector(selectProducts)
+    const cartItems = useSelector(selectCartItems)
 
 
     const handleCheckoutRequest = () => {
@@ -19,8 +23,18 @@ export default function CartFooter() {
             toast('Log in to proceed to checkout')
         } else {
             dispatch(proceedToPaymentAction())
+            const order = handleTestOrder();
+            dispatch(submitOrder(order))
+            api.getDate();
         }
 
+    }
+
+    const handleTestOrder = () => {
+        console.log("Products: ", products);
+        console.log("CartItems: ", cartItems);
+        const finalOrder = api.transformOrderForDB(cartItems, products)
+        return finalOrder;
     }
 
     return (

@@ -189,15 +189,22 @@ export const api = {
         }
     },
 
-    async payment(totalToPay, id){
+    //process payment and order
+    async payment(totalToPay, id, order){
+        const date = this.getDate();
         console.log("API payment called");
+        console.log("DATE: ", date);
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch('http://localhost:5000/pay', 
             {
                 'method': 'POST',
                 'headers': {
                     'amount': totalToPay,
-                    'id': id
+                    'id': id,
+                    'order': order,
+                    'orderdate': date,
+                    'token': token
                 }
             })
             const parsedResponse = await response.json();
@@ -208,6 +215,7 @@ export const api = {
         }
     },
 
+    
 
     transformSingleOrderData(order){
         console.log('transform single order called');
@@ -250,8 +258,42 @@ export const api = {
       transformCost(cost){
           const costInPounds = cost / 100
           return `£${costInPounds.toFixed(2)}`
+      },
+
+      //insert the array of cartitems and of products
+      transformOrderForDB(cartItems, products){
+          let respJson = {"items": []};
+          cartItems.forEach(item => {
+              const product = products.find(prod => {
+                  return prod.product_id === item.id;
+              })
+              const newItem = {"product_id": item.id, 
+                                "product_name": product.name,
+                                "quantity": item.quantity
+                            }
+                respJson.items.push(newItem)
+          });
+          respJson = JSON.stringify(respJson)
+          console.log("RespJson: ", respJson );
+          return respJson;
+      },
+
+      getDate(){
+          const date = new Date();
+          const year = date.getFullYear();
+          let month = date.getMonth();
+            if(month <10){
+                month = "0" + month;
+            }
+          let day = date.getDay();
+            if(day <10){
+                day = "0" + day;
+        }
+          const stringDate = `${year}-${month}-${day}`;
+          return stringDate;
       }
+
+
 
     };
 
-console.log('api self-check', api.getProducts())
