@@ -1,19 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectUserName } from '../login/loginSlice';
 import { selectOrders } from './dashboardSlice';
 import CustomerOrder from './orders/order';
 import OrdersHeader from './orders/ordersHeader';
-
-
 import './dashboard.css'
+import { selectPaymentSuccess, resetPaymentState } from '../cart/payments/paymentSlice';
+import { clearCart } from '../cart/cartSlice';
+import { toast } from "react-toastify";
 
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
   const userName = useSelector(selectUserName)
   const ordersFetched = useSelector(selectOrders)
-
-  console.log('Orders fetched: ', JSON.stringify(ordersFetched))
+  const paymentSuccess = useSelector(selectPaymentSuccess)
+  
+  if (paymentSuccess){
+    dispatch(clearCart());
+    toast("Your order has been placed!");
+    dispatch(resetPaymentState());
+  }
 
 
   return(

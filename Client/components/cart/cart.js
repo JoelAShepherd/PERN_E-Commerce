@@ -3,10 +3,18 @@ import CartItem from './cartItems';
 import CartFooter from './cartFooter';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from './cartSlice';
+import {selectPaymentSuccess } from './payments/paymentSlice';
+import { Redirect } from 'react-router-dom';
 
 export default function Cart() {
     const cartItemsArr = useSelector(selectCartItems)
-    console.log('cartItems', cartItemsArr)
+    const paymentAndOrderCompleted = useSelector(selectPaymentSuccess)
+
+    if (paymentAndOrderCompleted) {
+        return (
+            <Redirect to="/login"/>
+        )
+    }
 
 
     if (cartItemsArr.length === 0){

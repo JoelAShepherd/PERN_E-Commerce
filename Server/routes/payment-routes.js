@@ -26,9 +26,6 @@ paymentRouter.post("/", cors(), authorization, async (req, res) => {
 			confirm: true
 		});
 
-		console.log("DATE: ", orderdate);
-		console.log("DATE TYPEOF", typeof orderdate);
-		        
 		//add order to the db
 		const newOrder = 
 		await pool.query('INSERT INTO orders (user_id, json_items_ordered, order_date, cost) VALUES ($1, $2, $3, $4) RETURNING *',

@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCartItems, selectCartTotalPrice, submitOrder } from './cartSlice';
-import { selectLoginStatus, selectProceedToPayment } from '../login/loginSlice';
+import { selectLoginStatus } from '../login/loginSlice';
 import { toast } from 'react-toastify';
-import { proceedToPayment as proceedToPaymentAction } from '../login/loginSlice';
 import Payment from './payments/Payment';
 import { selectProducts } from '../products/productsSlice';
 import { api } from '../../api/api';
+import { startPaymentProcess, selectPaymentProcessStarted } from './payments/paymentSlice';
 
 export default function CartFooter() {
     const cartTotal = useSelector(selectCartTotalPrice)
     const loggedIn = useSelector(selectLoginStatus)
-    const proceedToPayment = useSelector(selectProceedToPayment)
+    const paymentStarted = useSelector(selectPaymentProcessStarted)
     const dispatch = useDispatch()
     
     const products = useSelector(selectProducts)
@@ -22,10 +22,10 @@ export default function CartFooter() {
         if (!loggedIn){
             toast('Log in to proceed to checkout')
         } else {
-            dispatch(proceedToPaymentAction())
+            dispatch(startPaymentProcess())
             const order = handleTestOrder();
             dispatch(submitOrder(order))
-            api.getDate();
+            
         }
 
     }
@@ -41,7 +41,7 @@ export default function CartFooter() {
         <div className='cartFooter'>
             <p>Total: £{cartTotal.toFixed(2)}</p>
             <button onClick={handleCheckoutRequest}>Checkout</button>
-            {proceedToPayment && <Payment /> }
+            {paymentStarted && <Payment /> }
         </div>
     )
 }

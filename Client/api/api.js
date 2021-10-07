@@ -158,6 +158,9 @@ export const api = {
 
             const parsedRes = await response.json()
             console.log('OH response from API: ', parsedRes)
+            parsedRes.sort((a, b) => {
+                return b.order_id - a.order_id;
+            })
             const transformedRes = this.transformAllOrderData(parsedRes)
             console.log('Transformed res: ', transformedRes)
             return transformedRes
@@ -208,7 +211,17 @@ export const api = {
                 }
             })
             const parsedResponse = await response.json();
-            console.log("API payment response: ", parsedResponse);
+            
+            if (parsedResponse.success){
+                console.log("SUCCESS!!!");
+                const newOrderHist = await this.getOrderHistory();
+                const paymentResponse =
+                {
+                    "success": true, 
+                    "newOrderHistory": [...newOrderHist]
+                }
+                return paymentResponse;
+            }
             return parsedResponse;
         } catch (error) {
             console.log("API payment error:", error);

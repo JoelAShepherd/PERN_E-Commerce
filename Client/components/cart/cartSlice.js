@@ -20,10 +20,7 @@ export const cartSlice = createSlice({
                 state.cartItems.push({id: action.payload.id, quantity: action.payload.quantity})
             }
             state.totalItems += action.payload.quantity;
-            console.log('addItemsToCart inspection: ')
-            console.log('action.payload', action.payload)
-            console.log('action.payload.unitPrice', action.payload.unitPrice)
-            console.log('Typeof', typeof action.payload.unitPrice)
+            
             state.totalPrice += (action.payload.quantity * action.payload.unitPrice);
             
         },
@@ -49,6 +46,12 @@ export const cartSlice = createSlice({
         },
         submitOrder(state, action){
             state.order = action.payload;
+        },
+        clearCart(state){
+            state.cartItems =[],
+            state.totalItems = 0,
+            state.totalPrice = 0,
+            state.order = {}
         }
     }
 })
@@ -84,9 +87,11 @@ export function submitOrder(order){
     }
 }
 
+
 export const selectCartItems = state => state.cart.cartItems;
 export const selectCartQuantity = state => state.cart.totalItems;
 export const selectCartTotalPrice = state => state.cart.totalPrice;
 export const selectCartOrder = state => state.cart.order;
+export const { clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

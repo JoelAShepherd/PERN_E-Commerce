@@ -1,8 +1,10 @@
 import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useSelector } from 'react-redux';
-import { selectCartTotalPrice, selectCartOrder } from '../cartSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCartTotalPrice, selectCartOrder, clearCart } from '../cartSlice';
 import { api } from '../../../api/api';
+import { uploadOrders } from '../../dashboard/dashboardSlice';
+import { paymentSuccess, selectPaymentSuccess } from './paymentSlice';
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -25,11 +27,13 @@ const CARD_OPTIONS = {
 }
 
 export default function PaymentForm() {
+    const dispatch = useDispatch();
     const stripe = useStripe();
     const elements = useElements();
     const cartTotal = useSelector(selectCartTotalPrice)
     const totalToPay = (cartTotal.toFixed(2))*100;
     const order = useSelector(selectCartOrder);
+    const paymentAndOrderCompleted = useSelector(selectPaymentSuccess)
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -41,11 +45,14 @@ export default function PaymentForm() {
         if(!error){
             try {
                 const {id} = paymentMethod;
-                //api.payment needs to be written!
+                
                 const response = await api.payment(totalToPay, id, order)
 
-                if(response.ok){
+                if(response.success){
                     console.log("successful payment")
+                    console.log("New OH: ", response.newOrderHistory)
+                    dispatch(uploadOrders(response.newOrderHistory));
+                    dispatch(paymentSuccess())                    
                 }
             } catch (error) {
                 console.log("Error: ", error)
@@ -54,6 +61,8 @@ export default function PaymentForm() {
             console.log(error.message)
         }
     }
+
+    
     return (
         <div>
             <form onSubmit={handleSubmit}>
