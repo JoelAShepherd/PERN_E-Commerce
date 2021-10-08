@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectItems } from './itemsSlice';
 import { selectProducts } from '../products/productsSlice';
 import { addToCart } from '../cart/cartSlice';
+import { Link } from 'react-router-dom';
 
 export default function Item (props) {
     const dispatch = useDispatch();
@@ -27,13 +28,13 @@ export default function Item (props) {
         }
     }
 
-    
+    const link = `/products/${thisProduct.name}`
     
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
                 <p>{props.id}</p>
-                <p>{thisProduct.name}</p>
+                <Link to={link}>{thisProduct.name}</Link>
                 <img src='beans.jpg'></img>
             </div>
             <div className='itemSelectContainer'>

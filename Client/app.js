@@ -6,11 +6,13 @@ import Products from './components/products/products';
 import Cart from './components/cart/cart'
 import Login from './components/login/login'
 import Dashboard from './components/dashboard/dasboard';
+import ProductInfoPage from './components/products/productInfoPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { api } from './api/api';
 import { login } from './components/login/loginSlice';
 import { uploadOrders } from './components/dashboard/dashboardSlice';
+
 
 import { useDispatch } from 'react-redux';
 import { getProductsThunk } from './components/products/productsSlice';
@@ -52,6 +54,11 @@ function App () {
                             <h2>Cart</h2>
                             <Cart />
                         </Route>
+                        <Route path='/products/:product_name'>
+                            {// put a component here with the id as a param
+                            }
+                            <ProductInfoPage />
+                        </Route>
                         
                         <Route path='/login'>
                             <h2>Login</h2>
@@ -60,7 +67,10 @@ function App () {
                         <Route path='/dashboard'>
                             <Dashboard />
                         </Route>
-                        
+                        <Route exact path='*'>
+                            <h1>Title</h1>
+                            <Products />
+                        </Route>
                     </Switch> 
                     <ToastContainer position="top-center"
                                     autoClose={3000}
