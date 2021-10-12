@@ -1,9 +1,9 @@
  import React, { useState }from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProducts } from './productsSlice';
-import { selectItems } from '../item/itemsSlice';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../cart/cartSlice';
+import { toast } from 'react-toastify';
 
 import chevLeft from '../../../public/icons/chevLeft.jpg';
 import chevRight from '../../../public/icons/chevRight.jpg';
@@ -16,41 +16,48 @@ import cart from '../../../public/icons/cart.png';
  export default function ProductInfoPage() {
      const dispatch = useDispatch();
      const productsArr = useSelector(selectProducts);
-     const itemsArr = useSelector(selectItems);
+     
 
      const { product_name } = useParams();
      const thisProduct = productsArr.find((prod) => prod.name === product_name)
      const {product_id, name, unit_price, description} = thisProduct;
-     const thisItem = itemsArr.find((item) => item.id === product_id);
-     const thisItemQuant = thisItem.quantInComp;
+     
 
-     function changeItemQuant(bool){
-        let payload = {
-            id: product_id,
-            direction: bool
-        }
-        return {
-            type: "items/changeItem",
-            payload
-        }
+     const [itemQuant, setItemQuant] = useState(1);
+     const increment = () => {
+         if (itemQuant < 10){
+            setItemQuant(itemQuant + 1);
+         }
      }
+     const decrement = () => {
+         if (itemQuant > 1 ){
+            setItemQuant(itemQuant - 1);
+         }
+     }
+
+     const subTotal = (Math.round(unit_price * itemQuant * 100) /100).toFixed(2);
 
      return (
          <div>
             <h2>{name}</h2>
             <p>£{unit_price}</p>
             <div className='itemSelectContainer'>
-                <button onClick={() => dispatch(changeItemQuant(false))}>
+                <button onClick={decrement}>
                     <img src={chevLeft}/>
                 </button>
 
-                <p>{thisItemQuant}</p>
+                <p>{itemQuant}</p>
 
-                <button onClick={() => dispatch(changeItemQuant(true))}>
+                <button onClick={increment}>
                     <img src={chevRight}/>
                 </button>
 
-                <button onClick={() => dispatch(addToCart(product_id, thisItemQuant, unit_price))}>
+                <p>£{subTotal}</p>
+
+                <button onClick={() =>{ 
+                    dispatch(addToCart(product_id, itemQuant, unit_price))
+                    toast(`${itemQuant} ${name} added to your cart!`)
+                    }}>
                     <img src={cart} />
                 </button>
             </div>
