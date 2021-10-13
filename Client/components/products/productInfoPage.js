@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { addToCart } from '../cart/cartSlice';
 import { toast } from 'react-toastify';
 
-import chevLeft from '../../../public/icons/chevLeft.jpg';
-import chevRight from '../../../public/icons/chevRight.jpg';
+import chevLeft from '../../../public/icons/chevLeft.png';
+import chevRight from '../../../public/icons/chevRight.png';
 import cart from '../../../public/icons/cart.png';
 
 
@@ -37,9 +37,12 @@ import cart from '../../../public/icons/cart.png';
 
      const subTotal = (Math.round(unit_price * itemQuant * 100) /100).toFixed(2);
 
+     const imageSrc = `http://localhost:5000/public/${product_id}.jpg`
+
      return (
          <div>
             <h2>{name}</h2>
+            <img src={imageSrc}/>
             <p>£{unit_price}</p>
             <div className='itemSelectContainer'>
                 <button onClick={decrement}>

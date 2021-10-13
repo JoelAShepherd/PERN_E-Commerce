@@ -45,6 +45,7 @@ app.use('/auth', authRoutes);
 app.use('/dashboard', dashboard);
 app.use('/google', googleRoutes);
 app.use('/pay', paymentRoutes);
+app.use('/public', express.static('public/images'))
 
 
 //GET products info

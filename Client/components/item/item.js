@@ -29,21 +29,21 @@ export default function Item (props) {
     }
 
     const link = `/products/${thisProduct.name}`
+    const imageSrc = `http://localhost:5000/public/${props.id}.jpg`
     
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
-                <p>{props.id}</p>
                 <Link to={link}>{thisProduct.name}</Link>
-                <img src='beans.jpg'></img>
+                <img src={imageSrc}></img>
             </div>
             <div className='itemSelectContainer'>
                 <button onClick={() => dispatch(changeItemQuant(false))} >
-                    <img src='icons/chevLeft.jpg'/>
+                    <img src='icons/chevLeft.png'/>
                 </button>
                     <p>{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))}>
-                    <img src='icons/chevRight.jpg'/></button>
+                    <img src='icons/chevRight.png'/></button>
                 <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProdUnitPrice))}>
                     <img src='icons/cart.png' />
                 </button>
