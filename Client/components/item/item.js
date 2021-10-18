@@ -26,7 +26,7 @@ export default function Item (props) {
             type: "items/changeItem",
             payload
         }
-    }
+    } 
 
     const link = `/products/${thisProduct.name}`
     const imageSrc = `http://localhost:5000/public/${props.id}.jpg`
@@ -34,8 +34,10 @@ export default function Item (props) {
     return (
         <div className='itemContainer'>
             <div className='itemImageContainer'>
-                <Link to={link}>{thisProduct.name}</Link>
-                <img src={imageSrc}></img>
+                <Link to={link} className="productName">{thisProduct.name}</Link>
+                <Link to={link}>
+                    <img src={imageSrc} className="imgThmb"/>
+                </Link>
             </div>
             <div className='itemSelectContainer'>
                 <button onClick={() => dispatch(changeItemQuant(false))} >

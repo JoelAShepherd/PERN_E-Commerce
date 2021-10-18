@@ -43,7 +43,7 @@ export const productsSlice = createSlice({
         },
         [getProductsThunk.rejected]: (state, action) => {
             state.resultsLoading = false;
-            state.resultsError = true;
+            state.resultsError = true; 
         }
     }
 })

@@ -40,9 +40,9 @@ import cart from '../../../public/icons/cart.png';
      const imageSrc = `http://localhost:5000/public/${product_id}.jpg`
 
      return (
-         <div>
+         <div className="productInfoContainer">
             <h2>{name}</h2>
-            <img src={imageSrc}/>
+            <img src={imageSrc} className="productImg"/>
             <p>£{unit_price}</p>
             <div className='itemSelectContainer'>
                 <button onClick={decrement}>
@@ -64,7 +64,7 @@ import cart from '../../../public/icons/cart.png';
                     <img src={cart} />
                 </button>
             </div>
-            <p>{description}</p>
+            <p className="productDescription">{description}</p>
          </div>
      )
  }
