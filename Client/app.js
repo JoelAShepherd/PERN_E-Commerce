@@ -47,7 +47,9 @@ function App () {
                 <div className='mainContent'>
                     <Switch>
                         <Route exact path='/'>
-                            <h1>Title</h1>
+                            <p>Welcome to the PERN store. This is a mock site to showcase my code as 
+                                a full stack developer.
+                            </p>
                             <Products />
                         </Route>
                         <Route path='/cart'>
@@ -61,7 +63,6 @@ function App () {
                         </Route>
                         
                         <Route path='/login'>
-                            <h2>Login</h2>
                             <Login />
                         </Route>
                         <Route path='/dashboard'>

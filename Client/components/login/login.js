@@ -78,52 +78,51 @@ const Login = () => {
         <Router>
             <Switch>
                 <Route exact path={path}>
-                    <div className='loginContianer'>
+                    <div className='loginContainer'>
                         <div className='pgLogin'>
-                            <h3>pgLogin</h3>
+                            <h3>Login</h3>
                             <form onSubmit={handleSumbitLogin}>
-                            <div>
-                                <label htmlFor='email'>Email</label>
-                                <input type='email' id='email' name='email' required />
-                            </div>
-                            <div>
-                                <label htmlFor='password'>Password</label>
-                                <input type='password' id='password' name='password' required />
-                            </div>
-                            <button type='submit'>Login</button>
-                        </form>
+                                <div className="inputContainer">
+                                    <label htmlFor='email'>Email:</label>
+                                    <input type='email' id='email' name='email' required />
+                                </div>
+                                <div className="inputContainer">
+                                    <label htmlFor='password'>Password:</label>
+                                    <input type='password' id='password' name='password' required />
+                                </div>
+                                <button type='submit' className="loginButton">Login</button>
+                            </form>
                             
                         </div>
-                        <div className='thirdPartyLogin'>
-                            <h3>3rd Party</h3>
-                            
+                        {
+                        //<div className='thirdPartyLogin'>
+                            //<h3>3rd Party</h3>
+                        //</div>
+                        }
+                        <div className="registerLink">
+                            <p>Not a user? <Link to='/login/register'>Register here</Link> </p>
                         </div>
-                        <div className='status'>
-                            <p>Status: </p>
-                        </div>
-                        <p>Not a user? <Link to='/login/register'>Register here</Link> </p>
-                        
                     </div>
                 </Route>
                 <Route path={`${path}/register`}>
                     <div className='registerContainer'>
                         <h3>Register here</h3>
                         <form onSubmit={handleSubmitRegister}>
-                            <div>
+                            <div className="inputContainer">
                                 <label htmlFor='name'>Name</label>
                                 <input type='text' id='name' name='name' required />
                             </div>
-                            <div>
+                            <div className="inputContainer">
                                 <label htmlFor='email'>Email</label>
                                 <input type='email' id='email' name='email' required />
                             </div>
-                            <div>
+                            <div className="inputContainer">
                                 <label htmlFor='password'>Password</label>
                                 <input type='password' id='password' name='password' required />
                             </div>
-                            <button type='submit'>Register</button>
+                            <button type='submit' className="registerButton">Register</button>
                         </form>
-                        <div>
+                        <div className="memberLink">
                             <p>Already a member? <Link to='/login'> Log in here</Link></p>
                         </div>
                         

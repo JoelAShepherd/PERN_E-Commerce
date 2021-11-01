@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   return(
     <div>
-      <h2>Dashboard</h2>
+      <h2>Your Dashboard</h2>
       <p>Hello {userName}</p>
       <div className='orderHistoryContainer'>
       <h3>Order History</h3>

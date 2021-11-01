@@ -16,7 +16,7 @@ export default function Header () {
             </Link>
             <div className='headerContent'>
                 <HeaderLoginButton />
-                <Link to='/cart'>
+                <Link to='/cart' className="cartInHeader">
                     <div className='cart'>
                         Cart
                         <div className='cartCountCont'>
