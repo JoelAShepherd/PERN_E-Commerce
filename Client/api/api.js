@@ -63,14 +63,6 @@ export const api = {
 
 
 
-
-
-
-
-
-
-
-
     //Log in pre-existing user
     async loginUser(email, password){
         console.log('api login called')
@@ -111,14 +103,6 @@ export const api = {
         }
          
     },
-
-
-
-
-
-
-
-
 
 
 
@@ -249,9 +233,9 @@ export const api = {
          }
     
          return formatedOrder
-      },
+    },
 
-      transformAllOrderData(ordersFetched){
+    transformAllOrderData(ordersFetched){
         console.log('Transform all orders called')
         let transformedOrders = [];
         ordersFetched.forEach(order => {
@@ -259,22 +243,22 @@ export const api = {
         })
         console.log('Transformed Orders: ', transformedOrders)
         return transformedOrders;
-      },
+    },
       
-      transformDate(date_string){
+    transformDate(date_string){
           const year = date_string.slice(0,4)
           const month = date_string.slice(5, 7)
           const day = date_string.slice(8, 10)
           return `${day}/${month}/${year}`
-      },
+    },
 
-      transformCost(cost){
+    transformCost(cost){
           const costInPounds = cost / 100
           return `£${costInPounds.toFixed(2)}`
-      },
+    },
 
-      //insert the array of cartitems and of products
-      transformOrderForDB(cartItems, products){
+    //insert the array of cartitems and of products
+    transformOrderForDB(cartItems, products){
           let respJson = {"items": []};
           cartItems.forEach(item => {
               const product = products.find(prod => {
@@ -289,24 +273,24 @@ export const api = {
           respJson = JSON.stringify(respJson)
           console.log("RespJson: ", respJson );
           return respJson;
-      },
+    },
 
-      getDate(){
+    getDate(){
           const date = new Date();
           const year = date.getFullYear();
           let month = date.getMonth();
             if(month <10){
                 month = "0" + month;
             }
-          let day = date.getDay();
+          let day = date.getDate();
             if(day <10){
                 day = "0" + day;
         }
           const stringDate = `${year}-${month}-${day}`;
           return stringDate;
-      }
+    }
 
 
 
-    };
+};
 
