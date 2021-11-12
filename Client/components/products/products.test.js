@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from '../../store'
 import App from '../../app';
-import { render, cleanup, waitFor } from '@testing-library/react';
+import { render, cleanup, waitFor, within, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
 
@@ -16,8 +16,10 @@ const renderComponent = () => render(
 );
 
 
+
+
 test('render loading state followed by products', async () => {
-  const { queryByText } = renderComponent();
+    const { queryByText } = renderComponent();
 
   expect(queryByText('no data yet')).toBeInTheDocument();
   expect(queryByText('Products')).not.toBeInTheDocument()
@@ -25,5 +27,40 @@ test('render loading state followed by products', async () => {
   await waitFor(() => expect(queryByText('Products')).toBeInTheDocument())
   expect(queryByText('Beans')).toBeInTheDocument();
   expect(queryByText('Ham')).toBeInTheDocument();
+
+})
+
+
+test('Plus button increments value', async() => {
+    const { queryByText } = renderComponent();
+
+    await waitFor(() => expect(queryByText('Products')).toBeInTheDocument())
+
+    const product1 = await screen.findByTestId("product1");
+    const product1IncrementButton = within(product1).getByRole("increment");
+    const product1Value = within(product1).getByRole("itemQuantity")
+    console.log(product1Value.textContent)
+    expect(product1Value.textContent).toEqual("5")
+
+    fireEvent.click(product1IncrementButton)
+    expect(product1Value.textContent).toEqual("6")
+
+
+})
+
+test('Minus button decrements value', async() => {
+    const { queryByText } = renderComponent();
+
+    await waitFor(() => expect(queryByText('Products')).toBeInTheDocument())
+
+    const product1 = await screen.findByTestId("product1");
+    const product1DecrementButton = within(product1).getByRole("decrement");
+    const product1Value = within(product1).getByRole("itemQuantity")
+    console.log(product1Value.textContent)
+    expect(product1Value.textContent).toEqual("6")
+
+    fireEvent.click(product1DecrementButton)
+    expect(product1Value.textContent).toEqual("5")
+
 
 })

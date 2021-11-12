@@ -32,7 +32,7 @@ export default function Item (props) {
     const imageSrc = `http://localhost:5000/public/${props.id}.jpg`
     
     return (
-        <div className='itemContainer'>
+        <div className='itemContainer' data-testid={"product" + props.id}>
             <div className='itemImageContainer'>
                 <Link to={link} className="productName">{thisProduct.name}</Link>
                 <Link to={link}>
@@ -40,12 +40,13 @@ export default function Item (props) {
                 </Link>
             </div>
             <div className='itemSelectContainer'>
-                <button onClick={() => dispatch(changeItemQuant(false))} >
+                <button onClick={() => dispatch(changeItemQuant(false))} role="decrement">
                     <img src='icons/chevLeft.png'/>
                 </button>
-                    <p>{thisItemQuant}</p>
-                <button onClick={() => dispatch(changeItemQuant(true))}>
-                    <img src='icons/chevRight.png'/></button>
+                <p role="itemQuantity">{thisItemQuant}</p>
+                <button onClick={() => dispatch(changeItemQuant(true))} role="increment">
+                    <img src='icons/chevRight.png'/>
+                </button>
                 <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProdUnitPrice))}>
                     <img src='icons/cart.png' />
                 </button>

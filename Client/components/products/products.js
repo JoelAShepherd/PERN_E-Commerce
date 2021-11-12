@@ -47,7 +47,6 @@ export default function Products () {
                 loading ? (<h3>Loading...</h3>) : error? (<h3>Hmmm.... an error occured</h3>) : 
                 <div>
                     <h3>Welcome</h3>
-                    
                 </div>
             }
         </div>
