@@ -26,7 +26,6 @@ function App () {
 
     async function onLoadLoginCheck(){
         const loginCheck = await api.checkIfLoggedIn()
-        console.log('app level result check', loginCheck)
         if (loginCheck === 'Not Authorized'){
             return
         } else if (loginCheck === true){

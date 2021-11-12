@@ -39,6 +39,8 @@ export default function Products () {
 
             {hasData ? populateStore(productsArr) : <p>no data yet</p>}
 
+            {hasData && <h2 data-testid="products">Products</h2>}
+
             {hasData ? (productsArr.map((product, index) => 
                 <Item id={product.product_id} key={index} />
                 )) :

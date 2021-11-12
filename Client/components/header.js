@@ -12,7 +12,7 @@ export default function Header () {
     return (
         <div className='header'>
             <Link to='/'>
-                <h1>PERNTEST store</h1>
+                <h1>PERNstore</h1>
             </Link>
             <div className='headerContent'>
                 <HeaderLoginButton />

@@ -1,4 +1,4 @@
-
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const root = 'http://localhost:5000'
@@ -8,10 +8,10 @@ export const api = {
     //Return array of products in the database
     async getProducts(){
         try{
-            const response = await fetch((root + '/products'));
-            if (response.ok){
-                const jsonResponse = await Promise.resolve(response.json());
-                return jsonResponse;
+            const response = await axios.get((root + '/products'));
+            console.log("*** ", response)
+            if (response.statusText === "OK"){
+                return response.data;;
             }
             throw new Error('Request to sever 5000 failed at api request');
         } catch (err){
