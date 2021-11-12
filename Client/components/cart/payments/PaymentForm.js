@@ -32,9 +32,7 @@ export default function PaymentForm() {
     const stripe = useStripe();
     const elements = useElements();
     const cartTotal = useSelector(selectCartTotalPrice)
-    console.log("cart total  ", cartTotal)
     const totalToPay = ((cartTotal.toFixed(2))*100).toFixed();
-    console.log(" ***** Total to pay ", totalToPay)
     const order = useSelector(selectCartOrder);
     const paymentAndOrderCompleted = useSelector(selectPaymentSuccess)
 
