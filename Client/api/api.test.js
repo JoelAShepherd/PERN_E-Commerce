@@ -11,3 +11,4 @@ test("get date contains year, month and date", () => {
     expect(api.getDate()).toContain(day);
 
 })
+
