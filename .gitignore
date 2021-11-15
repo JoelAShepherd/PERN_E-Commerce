@@ -7,8 +7,8 @@
 .pnp.js
 
 #env
-.env
-/server/.env
+env.js
+/Server/.env
 
 # passwords
 /server/database/dbPass.js

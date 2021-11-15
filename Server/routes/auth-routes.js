@@ -79,7 +79,7 @@ authRouter.post('/login', validInfo, async (req, res) => {
         res.status(500).send('Server error')
     }
     
-})
+}) 
 
 authRouter.get('/verify', authorization, async (req, res) => {
     try{

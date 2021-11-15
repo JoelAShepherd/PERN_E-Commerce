@@ -20,7 +20,6 @@ const Login = () => {
     const handleSumbitLogin = async (event) => {
         event.preventDefault();
         const { email, password } = event.target;
-        console.log('Handling login ')
 
         try{
             const result = await api.loginUser(email.value, password.value)
@@ -49,9 +48,8 @@ const Login = () => {
         const { name, email, password } = event.target
         try{
             const result = await api.registerUser(name.value, email.value, password.value)
-            console.log('reg result in login component', result)
+
             if (result){
-                console.log('Reg result true!')
                 dispatch(login(name.value))
             }
         } catch(err){
@@ -63,13 +61,11 @@ const Login = () => {
         
     if (loginStatus){
             try{
-                
                 return (
                         <Dashboard />
                 )
             } catch(err){
                 console.log(err.message)
-                
             }
         }
     
@@ -94,11 +90,6 @@ const Login = () => {
                             </form>
                             
                         </div>
-                        {
-                        //<div className='thirdPartyLogin'>
-                            //<h3>3rd Party</h3>
-                        //</div>
-                        }
                         <div className="registerLink">
                             <p>Not a user? <Link to='/login/register'>Register here</Link> </p>
                         </div>

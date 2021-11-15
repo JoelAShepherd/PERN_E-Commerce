@@ -30,7 +30,6 @@ function App () {
             return
         } else if (loginCheck === true){
             const orders = await api.getOrderHistory()
-            console.log('Orders in app on LOGIN: ', orders)
             dispatch(uploadOrders(orders))
             const userName = await api.getUserName();
             dispatch(login(userName.user_name))
@@ -51,26 +50,29 @@ function App () {
                             </p>
                             <Products />
                         </Route>
+
                         <Route path='/cart'>
                             <h2>Cart</h2>
                             <Cart />
                         </Route>
+
                         <Route path='/products/:product_name'>
-                            {// put a component here with the id as a param
-                            }
                             <ProductInfoPage />
                         </Route>
                         
                         <Route path='/login'>
                             <Login />
                         </Route>
+
                         <Route path='/dashboard'>
                             <Dashboard />
                         </Route>
+
                         <Route exact path='*'>
                             <h1>Title</h1>
                             <Products />
                         </Route>
+                        
                     </Switch> 
                     <ToastContainer position="top-center"
                                     autoClose={3000}

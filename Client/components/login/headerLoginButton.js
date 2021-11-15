@@ -13,7 +13,6 @@ export default function HeaderLoginButton() {
     const loggedIn = useSelector(selectLoginStatus)
 
     const handleLogout = () => {
-        console.log('Handling logout')
         dispatch(logout());
         dispatch(clearOrders());
         localStorage.removeItem('token')

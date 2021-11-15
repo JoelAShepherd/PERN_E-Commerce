@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartTotalPrice, selectCartOrder, clearCart } from '../cartSlice';
+import { selectCartTotalPrice, selectCartOrder } from '../cartSlice';
 import { api } from '../../../api/api';
 import { uploadOrders } from '../../dashboard/dashboardSlice';
-import { paymentSuccess, selectPaymentSuccess } from './paymentSlice';
+import { paymentSuccess } from './paymentSlice';
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",
@@ -34,7 +34,7 @@ export default function PaymentForm() {
     const cartTotal = useSelector(selectCartTotalPrice)
     const totalToPay = ((cartTotal.toFixed(2))*100).toFixed();
     const order = useSelector(selectCartOrder);
-    const paymentAndOrderCompleted = useSelector(selectPaymentSuccess)
+    
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -50,8 +50,6 @@ export default function PaymentForm() {
                 const response = await api.payment(totalToPay, id, order)
 
                 if(response.success){
-                    console.log("successful payment")
-                    console.log("New OH: ", response.newOrderHistory)
                     dispatch(uploadOrders(response.newOrderHistory));
                     dispatch(paymentSuccess())                    
                 }

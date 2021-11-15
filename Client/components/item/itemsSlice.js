@@ -25,11 +25,11 @@ export const itemsSlice = createSlice({
     }
 })
 
-console.log(itemsSlice.actions)
+
 
 export const selectItems = state => state.items.items;
 export const selectItemsState = state => state.items;
 export const {addItem} = itemsSlice.actions;
-console.log('ADD ITEM ACTION:  ', addItem)
+
 
 export default itemsSlice.reducer;

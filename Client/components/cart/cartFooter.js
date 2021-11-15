@@ -31,8 +31,6 @@ export default function CartFooter() {
     }
 
     const handleTestOrder = () => {
-        console.log("Products: ", products);
-        console.log("CartItems: ", cartItems);
         const finalOrder = api.transformOrderForDB(cartItems, products)
         return finalOrder;
     }

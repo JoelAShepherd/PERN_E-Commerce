@@ -10,8 +10,6 @@ export const getProductsThunk = createAsyncThunk(
     }
 )
 
-
-
 export const productsSlice = createSlice({
     name: 'products',
     initialState: {
@@ -30,7 +28,7 @@ export const productsSlice = createSlice({
         }
     },
     extraReducers: {
-        [getProductsThunk.pending]: (state, action) => {
+        [getProductsThunk.pending]: (state) => {
             state.resultsLoading = true;
             state.resultsError = false;
             state.data = false
@@ -41,7 +39,7 @@ export const productsSlice = createSlice({
             state.resultsError = false;
             state.data = true
         },
-        [getProductsThunk.rejected]: (state, action) => {
+        [getProductsThunk.rejected]: (state) => {
             state.resultsLoading = false;
             state.resultsError = true; 
         }
