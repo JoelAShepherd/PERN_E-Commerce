@@ -1,3 +1,5 @@
+//Google login in development
+
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const pool = require('../../database/db')

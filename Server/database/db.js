@@ -1,11 +1,9 @@
 const Pool = require('pg').Pool;
-const pgPass = require('./dbPass')
-
-const password = pgPass.password
+require('dotenv').config();
 
 const pool = new Pool({
     user: 'postgres',
-    password: password,
+    password: process.env.pgPass,
     host: 'localhost',
     port: 5432,
     database: 'pern_ecomm'

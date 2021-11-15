@@ -17,16 +17,15 @@ authRouter.use(cors())
 
 //register new user
 authRouter.post('/register', validInfo, async (req, res) => {
-    console.log('Server recieves POST to register new user')
+    
     try {
-        //console.log('Req Body :', req.body)
         const { name, email, password } = req.body;
-        
 
         //check if user already exists
         const user = await pool.query("SELECT * FROM users WHERE user_email = $1", 
         [email])
 
+        //email already registered
         if (user.rows.length !== 0){
             return res.status(401).json("User already exists")
         }
@@ -34,18 +33,13 @@ authRouter.post('/register', validInfo, async (req, res) => {
         //bcrypt the password
         const hashedPW = await bcrypt.hash(password, 10)
 
-
         //add user to db
         const newUser = await pool.query('INSERT INTO users (user_name, user_email, user_pass) VALUES($1, $2, $3) RETURNING *',
         [name, email, hashedPW]);
         
-            
-        
         //generate jwt token
-        
         const token = jwtGenerator(newUser.rows[0].user_id)
-        console.log('Token: ', token)
-
+        
         res.json({token})
         
     } catch(error) {
@@ -57,15 +51,11 @@ authRouter.post('/register', validInfo, async (req, res) => {
 //auth login
 authRouter.post('/login', validInfo, async (req, res) => {
     //log into pg user system
-    console.log('Server reieves login POST request')
     try{
         //destructure req.body
-
         const { email, password } = req.body;
     
-
         //check if user exists; if not throw error
-
         const user = await pool.query("SELECT * FROM users WHERE user_email = $1", [email]);
 
         if (user.rows.length === 0){
@@ -73,10 +63,7 @@ authRouter.post('/login', validInfo, async (req, res) => {
         }
 
         //check if incoming password is same as db pass
-        
         const validPass = await bcrypt.compare(password, user.rows[0].user_pass)
-
-        console.log("Valid pass? ", validPass)
 
         if (!validPass){
             return res.status(401).json("Email or password is incorrect")
@@ -84,10 +71,8 @@ authRouter.post('/login', validInfo, async (req, res) => {
 
         //issue jwt
         const token = jwtGenerator(user.rows[0].user_id)
-        console.log('Token: ', token)
 
         res.json({token})
-
 
     } catch(error) {
         console.log(error.message)

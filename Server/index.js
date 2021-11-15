@@ -56,6 +56,7 @@ app.get('/products', async(req, res) => {
         res.json(allProducts.rows)
 
     } catch(err) {
+        res.status(500).send('Server error')
         console.log(err.message)
     }
 })

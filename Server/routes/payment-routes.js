@@ -30,8 +30,7 @@ paymentRouter.post("/", cors(), authorization, async (req, res) => {
 		const newOrder = 
 		await pool.query('INSERT INTO orders (user_id, json_items_ordered, order_date, cost) VALUES ($1, $2, $3, $4) RETURNING *',
 		[user_id, order, orderdate, amount]);
-		console.log("NEW ORDER: ", newOrder);
-
+		
 		//payment and db successful then:
 		res.json({
 			"message": "Payment successful",
@@ -39,7 +38,7 @@ paymentRouter.post("/", cors(), authorization, async (req, res) => {
 		});
 	} catch (error) {
 		console.log("Error", error)
-		res.json({
+		res.status(400).json({
 			"message": "Payment failed",
 			"success": false
 		})

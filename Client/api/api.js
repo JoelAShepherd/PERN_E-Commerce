@@ -121,6 +121,7 @@ export const api = {
             )
             const parsedRes = await response.json();
             console.log('Username from API: ', parsedRes)
+            console.log("**** RESP: ", response)
             return parsedRes
         } catch(err){
             console.log(err)
@@ -166,6 +167,7 @@ export const api = {
                 }
             })
             const parsedRes = await response.json()
+           
             
             console.log('API checkifloggedin result', parsedRes)
             
