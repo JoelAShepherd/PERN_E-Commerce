@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack-dev-server --mode development --open --hot"
+    "start": "node index.js",
+    "dev-start": "webpack-dev-server --mode development --open --hot"
   },
   "keywords": [],
   "author": "",
