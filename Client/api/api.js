@@ -1,7 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { env } from '../env'
 
-const root = 'http://localhost:5000'
+const root = env.SERVER_BASE_URL
 
 export const api = {
 
@@ -9,9 +10,8 @@ export const api = {
     async getProducts(){
         try{
             const response = await axios.get((root + '/products'));
-            console.log("*** ", response)
             if (response.statusText === "OK"){
-                return response.data;;
+                return response.data;
             }
             throw new Error('Request to sever 5000 failed at api request');
         } catch (err){
@@ -25,10 +25,9 @@ export const api = {
     //Add a new user to the database
     async registerUser(name, email, password){
         
-        console.log('register user called')
         try{
             const newUser = {name: name, email: email, password:password};
-            const regResponse = await fetch('http://localhost:5000/auth/register', {
+            const regResponse = await fetch(root + '/auth/register', {
             'method': 'POST',
             'headers': {
               'Content-type': 'application/json'
@@ -36,7 +35,6 @@ export const api = {
             'body': JSON.stringify(newUser)
             })
             const parseRegResponse = await regResponse.json()
-            console.log('ParseRegResp: ', parseRegResponse)
 
             if (parseRegResponse === 'User already exists'){
                 toast('A user with that email address already exists')
@@ -58,18 +56,12 @@ export const api = {
         }
     },
 
-
-
-
-
-
     //Log in pre-existing user
     async loginUser(email, password){
-        console.log('api login called')
         const userCreds = {email: email, password: password}
         
         try{
-            const response = await fetch('http://localhost:5000/auth/login', {
+            const response = await fetch(root + '/auth/login', {
                 'method': 'POST',
                 'headers': {
                     'Content-type': 'application/json'
@@ -77,26 +69,24 @@ export const api = {
                   'body': JSON.stringify(userCreds)
             })
             const parseRes = await response.json();
-            console.log('Token in API', parseRes)
 
             if (parseRes === 'Email or password is incorrect'){
                 toast('Email or password is incorrect. Please try again')
                 return false
             }
+
             if (parseRes === 'Invalid Email'){
                 toast('Email or password is incorrect. Please try again')
                 return false
             }
+
             if (parseRes === 'Missing Credentials'){
                 toast('Please enter all the required information')
                 return false
             }
-
-            
-           
+         
             localStorage.setItem("token", parseRes.token)
             return true;
-            
 
         } catch(err){
             console.log(err)
@@ -104,25 +94,20 @@ export const api = {
          
     },
 
-
-
     //get username from server based on the jwt token provided
     async getUserName(){
-        console.log('get user name called in API')
         
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5000/dashboard', {
+            const response = await fetch(root + '/dashboard', {
                 'method': 'GET',
                 'headers': {
                     'token': token
                 }
-            }
-            )
+            })
             const parsedRes = await response.json();
-            console.log('Username from API: ', parsedRes)
-            console.log("**** RESP: ", response)
             return parsedRes
+
         } catch(err){
             console.log(err)
         }
@@ -130,11 +115,10 @@ export const api = {
 
     //get order history from the db using the token 
     async getOrderHistory(){
-        console.log('api getOrderHistory called')
 
         try {
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5000/dashboard/orders', {
+            const response = await fetch(root + '/dashboard/orders', {
                 'method': 'GET',
                 'headers': {
                     'token': token
@@ -142,13 +126,12 @@ export const api = {
             })
 
             const parsedRes = await response.json()
-            console.log('OH response from API: ', parsedRes)
             parsedRes.sort((a, b) => {
                 return b.order_id - a.order_id;
             })
             const transformedRes = this.transformAllOrderData(parsedRes)
-            console.log('Transformed res: ', transformedRes)
             return transformedRes
+
         } catch(err){
             console.log(err.message)
         }
@@ -156,21 +139,18 @@ export const api = {
 
     //on page load check if the user is already logged in
     async checkIfLoggedIn(){
-        console.log('API checkIfLoggedIn called');
+
         try{  
             const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:5000/auth/verify',
+            const response = await fetch(root + '/auth/verify',
             {
                 'method': 'GET',
                 'headers': {
                     'token': token
                 }
             })
+
             const parsedRes = await response.json()
-           
-            
-            console.log('API checkifloggedin result', parsedRes)
-            
             return parsedRes;
 
         } catch(err){
@@ -181,11 +161,9 @@ export const api = {
     //process payment and order
     async payment(totalToPay, id, order){
         const date = this.getDate();
-        console.log("API payment called");
-        console.log("DATE: ", date);
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch('http://localhost:5000/pay', 
+            const response = await fetch(root + '/pay', 
             {
                 'method': 'POST',
                 'headers': {
@@ -199,7 +177,6 @@ export const api = {
             const parsedResponse = await response.json();
             
             if (parsedResponse.success){
-                console.log("SUCCESS!!!");
                 const newOrderHist = await this.getOrderHistory();
                 const paymentResponse =
                 {
@@ -217,15 +194,12 @@ export const api = {
     
 
     transformSingleOrderData(order){
-        console.log('transform single order called');
           const {order_id, order_date, cost, order_status} = order
          const rawItems = order.json_items_ordered.items
-         console.log('Raw Items: ', rawItems)
          let formatedItems = []
          rawItems.forEach(item => {
            formatedItems.push(`${item.product_name}: ${item.quantity}`)
          })
-         console.log('formated items', formatedItems)
          const formatedOrder = {
            'order_id': order_id,
            'json_items_ordered': formatedItems,
@@ -238,12 +212,11 @@ export const api = {
     },
 
     transformAllOrderData(ordersFetched){
-        console.log('Transform all orders called')
         let transformedOrders = [];
         ordersFetched.forEach(order => {
           transformedOrders.push(this.transformSingleOrderData(order))
         })
-        console.log('Transformed Orders: ', transformedOrders)
+
         return transformedOrders;
     },
       
@@ -251,11 +224,13 @@ export const api = {
           const year = date_string.slice(0,4)
           const month = date_string.slice(5, 7)
           const day = date_string.slice(8, 10)
+
           return `${day}/${month}/${year}`
     },
 
     transformCost(cost){
           const costInPounds = cost / 100
+
           return `£${costInPounds.toFixed(2)}`
     },
 
@@ -273,7 +248,7 @@ export const api = {
                 respJson.items.push(newItem)
           });
           respJson = JSON.stringify(respJson)
-          console.log("RespJson: ", respJson );
+          
           return respJson;
     },
 
@@ -289,6 +264,7 @@ export const api = {
                 day = "0" + day;
         }
           const stringDate = `${year}-${month}-${day}`;
+
           return stringDate;
     }
 

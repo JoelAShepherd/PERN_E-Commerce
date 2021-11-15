@@ -3,9 +3,9 @@ require('dotenv').config();
 
 const pool = new Pool({
     user: 'postgres',
-    password: process.env.pgPass,
+    password: process.env.PGPASS,
     host: 'localhost',
-    port: 5432,
+    port: process.env.POSTGRES_PORT,
     database: 'pern_ecomm'
 })
 
