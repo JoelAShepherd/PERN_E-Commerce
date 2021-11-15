@@ -2,6 +2,7 @@
   "name": "e-comm2",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "Client/index.js",
   "scripts": {
     "test": "jest",

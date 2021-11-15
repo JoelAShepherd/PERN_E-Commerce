@@ -1,9 +1,9 @@
 const config = {
-    verbose: true,
-    moduleNameMapper: {
-        "\\.(css|png)$" : "identity-obj-proxy"
-    },
-    testEnvironment: "jsdom"
-  };
+verbose: true,
+moduleNameMapper: {
+    "\\.(css|png)$" : "identity-obj-proxy"
+},
+testEnvironment: "jsdom"
+};
   
-  module.exports = config;
+export default config;
