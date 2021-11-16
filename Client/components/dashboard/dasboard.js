@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUserName } from '../login/loginSlice';
-import { selectOrders } from './dashboardSlice';
-import CustomerOrder from './orders/order';
-import OrdersHeader from './orders/ordersHeader';
+import { selectUserName } from '../login/loginSlice.js';
+import { selectOrders } from './dashboardSlice.js';
+import CustomerOrder from './orders/order.js';
+import OrdersHeader from './orders/ordersHeader.js';
 import './dashboard.css'
-import { selectPaymentSuccess, resetPaymentState } from '../cart/payments/paymentSlice';
-import { clearCart } from '../cart/cartSlice';
+import { selectPaymentSuccess, resetPaymentState } from '../cart/payments/paymentSlice.js';
+import { clearCart } from '../cart/cartSlice.js';
 import { toast } from "react-toastify";
 
 

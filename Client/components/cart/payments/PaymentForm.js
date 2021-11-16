@@ -1,10 +1,10 @@
 import React from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartTotalPrice, selectCartOrder } from '../cartSlice';
-import { api } from '../../../api/api';
-import { uploadOrders } from '../../dashboard/dashboardSlice';
-import { paymentSuccess } from './paymentSlice';
+import { selectCartTotalPrice, selectCartOrder } from '../cartSlice.js';
+import { api } from '../../../api/api.js';
+import { uploadOrders } from '../../dashboard/dashboardSlice.js';
+import { paymentSuccess } from './paymentSlice.js';
 
 const CARD_OPTIONS = {
 	iconStyle: "solid",

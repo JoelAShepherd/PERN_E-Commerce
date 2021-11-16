@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from '../../store'
-import App from '../../app';
+import { store } from '../../store.js'
+import App from '../../app.js';
 import { render, cleanup, waitFor, within, fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 

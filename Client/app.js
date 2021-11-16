@@ -1,21 +1,21 @@
 import React from 'react';
 import './app.css';
-import Header from './components/header';
-import Footer from './components/footer';
-import Products from './components/products/products';
-import Cart from './components/cart/cart'
-import Login from './components/login/login'
-import Dashboard from './components/dashboard/dasboard';
-import ProductInfoPage from './components/products/productInfoPage';
+import Header from './components/header.js';
+import Footer from './components/footer.js';
+import Products from './components/products/products.js';
+import Cart from './components/cart/cart.js'
+import Login from './components/login/login.js'
+import Dashboard from './components/dashboard/dasboard.js';
+import ProductInfoPage from './components/products/productInfoPage.js';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { api } from './api/api';
-import { login } from './components/login/loginSlice';
-import { uploadOrders } from './components/dashboard/dashboardSlice';
+import { api } from './api/api.js';
+import { login } from './components/login/loginSlice.js';
+import { uploadOrders } from './components/dashboard/dashboardSlice.js';
 
 
 import { useDispatch } from 'react-redux';
-import { getProductsThunk } from './components/products/productsSlice';
+import { getProductsThunk } from './components/products/productsSlice.js';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 

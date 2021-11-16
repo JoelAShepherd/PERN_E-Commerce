@@ -1,4 +1,4 @@
-import {api} from './api';
+import {api} from './api.js';
 
 test("get date contains year, month and date", () => {
     const date = new Date();

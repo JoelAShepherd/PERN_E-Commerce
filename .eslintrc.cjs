@@ -1,4 +1,4 @@
-const es = {
+module.exports = {
     "env": {
         "browser": true
     },
@@ -10,4 +10,3 @@ const es = {
     "parser": "babel-eslint"
 };
 
-export default es;

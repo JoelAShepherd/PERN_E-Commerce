@@ -1,14 +1,14 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLoginStatus } from "./loginSlice";
-import { api } from "../../api/api";
+import { selectLoginStatus } from "./loginSlice.js";
+import { api } from "../../api/api.js";
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
-import { login } from "./loginSlice";
+import { login } from "./loginSlice.js";
 
-import Dashboard from "../dashboard/dasboard";
+import Dashboard from "../dashboard/dasboard.js";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { uploadOrders } from "../dashboard/dashboardSlice";
+import { uploadOrders } from "../dashboard/dashboardSlice.js";
 
 
 

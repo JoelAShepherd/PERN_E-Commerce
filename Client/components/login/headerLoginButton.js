@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectLoginStatus } from './loginSlice';
-import { logout } from "./loginSlice";
-import { clearOrders } from "../dashboard/dashboardSlice";
+import { selectLoginStatus } from './loginSlice.js';
+import { logout } from "./loginSlice.js";
+import { clearOrders } from "../dashboard/dashboardSlice.js";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 

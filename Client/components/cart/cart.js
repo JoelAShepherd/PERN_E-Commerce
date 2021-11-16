@@ -1,9 +1,9 @@
 import React from 'react';
-import CartItem from './cartItems';
-import CartFooter from './cartFooter';
+import CartItem from './cartItems.js';
+import CartFooter from './cartFooter.js';
 import { useSelector } from 'react-redux';
-import { selectCartItems } from './cartSlice';
-import {selectPaymentSuccess } from './payments/paymentSlice';
+import { selectCartItems } from './cartSlice.js';
+import {selectPaymentSuccess } from './payments/paymentSlice.js';
 import { Redirect } from 'react-router-dom';
 
 export default function Cart() {

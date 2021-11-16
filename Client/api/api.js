@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { env } from '../env'
+import { env } from '../env.js'
 
 const root = env.SERVER_BASE_URL
 

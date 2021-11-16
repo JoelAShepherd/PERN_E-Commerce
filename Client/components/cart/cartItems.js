@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems } from './cartSlice';
-import { selectProducts } from '../products/productsSlice';
-import { addToCart, removeFromCart } from './cartSlice';
+import { selectCartItems } from './cartSlice.js';
+import { selectProducts } from '../products/productsSlice.js';
+import { addToCart, removeFromCart } from './cartSlice.js';
 
 export default function CartItem (props) {
     const dispatch = useDispatch()

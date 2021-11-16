@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectItems } from './itemsSlice';
-import { selectProducts } from '../products/productsSlice';
-import { addToCart } from '../cart/cartSlice';
+import { selectItems } from './itemsSlice.js';
+import { selectProducts } from '../products/productsSlice.js';
+import { addToCart } from '../cart/cartSlice.js';
 import { Link } from 'react-router-dom';
 
 export default function Item (props) {

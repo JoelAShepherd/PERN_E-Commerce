@@ -1,9 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './store.js';
 import { render, screen, cleanup, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import App from './app';
+import App from './app.js';
 
 afterEach(cleanup);
 

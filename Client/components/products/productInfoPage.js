@@ -1,10 +1,10 @@
  import React, { useState }from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectProducts } from './productsSlice';
+import { selectProducts } from './productsSlice.js';
 import { useParams } from 'react-router-dom';
-import { addToCart } from '../cart/cartSlice';
+import { addToCart } from '../cart/cartSlice.js';
 import { toast } from 'react-toastify';
-import { env } from '../../env';
+import { env } from '../../env.js';
 
 import chevLeft from '../../../public/icons/chevLeft.png';
 import chevRight from '../../../public/icons/chevRight.png';

@@ -1,8 +1,8 @@
 import React from 'react';
-import Item from '../item/item';
+import Item from '../item/item.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectProducts, selectProductsState} from './productsSlice';
-import { addItem, selectItems } from '../item/itemsSlice';
+import { selectProducts, selectProductsState} from './productsSlice.js';
+import { addItem, selectItems } from '../item/itemsSlice.js';
 
 
 

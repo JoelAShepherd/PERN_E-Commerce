@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCartItems, selectCartTotalPrice, submitOrder } from './cartSlice';
-import { selectLoginStatus } from '../login/loginSlice';
+import { selectCartItems, selectCartTotalPrice, submitOrder } from './cartSlice.js';
+import { selectLoginStatus } from '../login/loginSlice.js';
 import { toast } from 'react-toastify';
-import Payment from './payments/Payment';
-import { selectProducts } from '../products/productsSlice';
-import { api } from '../../api/api';
-import { startPaymentProcess, selectPaymentProcessStarted } from './payments/paymentSlice';
+import Payment from './payments/Payment.js';
+import { selectProducts } from '../products/productsSlice.js';
+import { api } from '../../api/api.js';
+import { startPaymentProcess, selectPaymentProcessStarted } from './payments/paymentSlice.js';
 
 export default function CartFooter() {
     const cartTotal = useSelector(selectCartTotalPrice)

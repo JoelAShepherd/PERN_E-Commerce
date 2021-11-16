@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectCartQuantity, selectCartTotalPrice } from './cart/cartSlice';
-import HeaderLoginButton from './login/headerLoginButton';
+import { selectCartQuantity, selectCartTotalPrice } from './cart/cartSlice.js';
+import HeaderLoginButton from './login/headerLoginButton.js';
 
 export default function Header () {
     const cartQuant = useSelector(selectCartQuantity)
