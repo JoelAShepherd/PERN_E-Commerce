@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
-const wpSettings = {
+module.exports = {
     "mode": "development",
     "entry": "./Client/index.js",
     "output": {
@@ -61,4 +61,3 @@ const wpSettings = {
     ]
 }
 
-export default wpSettings;
