@@ -14,7 +14,7 @@ const authRoutes = require('./routes/auth-routes');
 const dashboard = require('./routes/dashboard');
 const paymentRoutes = require('./routes/payment-routes');
 
-const PORT = process.env.SERVER_PORT;
+const PORT = process.env.PORT || 5000;
 
 //middleware
 app.use(cors());
@@ -22,12 +22,7 @@ app.use(express.json());
 app.use(morgan('dev'))
 app.use(helmet())
 
-app.use(
-    cookieSession({
-      maxAge: 24 * 60 * 60 * 1000,
-      keys: [process.env.cookieKey],
-    })
-);
+
 
 app.use(passport.initialize())
 app.use(passport.session())

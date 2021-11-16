@@ -4,7 +4,6 @@ import { api } from '../../api/api.js'
 export const getProductsThunk = createAsyncThunk(
     'products/getProductsThunk',
     async() => {
-        console.log('getProductsThunk has run')
         const products = await api.getProducts();
         return products;
     }
