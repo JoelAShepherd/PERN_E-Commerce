@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
     "mode": "development",
@@ -14,11 +15,12 @@ module.exports = {
                 "enforce": "pre",
                 "test": /\.js$/,
                 "exclude": /node_modules/,
-                "loader": "eslint-loader",
+                "loader": "eslint-webpack-plugin",
                 "options": {
                   "emitWarning": true,
                   "failOnError": false,
-                  "failOnWarning": false
+                  "failOnWarning": false,
+                  "target": "ES6"
                 }
             },
             {
@@ -53,11 +55,12 @@ module.exports = {
               }
         ]
     },
-    "plugins": [
+    "plugins": [ new ESLintPlugin(), 
         new HtmlWebPackPlugin({
             template: "./public/index.html",
             filename: "./index.html"
-        })
+        }),
+        
     ]
 }
 
