@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "homepage": "https://pern-e-commerce.herokuapp.com/",
   "description": "",
-  "main": "Client/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "node Client/index.js",
+    "start": "node index.js",
     "dev-start": "webpack-dev-server --mode development --open --hot"
   },
   "keywords": [],
