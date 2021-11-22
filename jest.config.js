@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
 verbose: true,
 moduleNameMapper: {
     "\\.(css|png)$" : "identity-obj-proxy"
@@ -6,4 +6,3 @@ moduleNameMapper: {
 testEnvironment: "jsdom"
 };
   
-export default config;
