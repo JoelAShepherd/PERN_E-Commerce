@@ -1,5 +1,6 @@
-const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+
 
 module.exports = {
     "mode": "development",
