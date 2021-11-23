@@ -256,6 +256,7 @@ export const api = {
           const date = new Date();
           const year = date.getFullYear();
           let month = date.getMonth();
+          month += 1;
             if(month <10){
                 month = "0" + month;
             }

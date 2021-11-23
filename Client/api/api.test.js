@@ -3,7 +3,7 @@ import {api} from './api.js';
 test("get date contains year, month and date", () => {
     const date = new Date();
     const year = String(date.getFullYear());
-    const month = String(date.getMonth());
+    const month = String((date.getMonth())+1);
     const day = String(date.getDate());
 
     expect(api.getDate()).toContain(year);
