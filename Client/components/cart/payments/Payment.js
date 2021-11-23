@@ -13,6 +13,7 @@ const Payment = () => {
     return (
         <div className='paymentsContainer'>
             <h3>Payments</h3>
+            <p>To demo the purchase, use card number 4242 4242 4242 4242</p>
             <Elements stripe={stripePromise}>
                 <PaymentForm />
             </Elements>

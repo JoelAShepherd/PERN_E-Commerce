@@ -14,7 +14,6 @@ body {
 }
 
 .header {
-    border-bottom: 2px solid blue;
     display: flex;
     justify-content: space-between;
 }
@@ -29,16 +28,23 @@ body {
 
 .headerLoginContainer{
     padding-top: 11px;
+    margin: 0px 30px;
 }
 
 .headerLoginContainer a{
     margin: 5px;
     text-decoration: none;
+    margin: 0px 15px;
+}
+
+.headerLoginContainer a:link{
+    color: inherit
 }
 
 .cartInHeader {
     padding-top: 8px;
     text-decoration: none;
+    background-color: rgba(211, 211, 211, 0.384);
 }
 
 .login, .cart {
@@ -87,6 +93,11 @@ body {
     flex-direction: column;
     margin: 10px;
     background-color: white;
+    transition: all .4s ease-in-out;
+}
+
+.itemContainer:hover {
+    transform: scale(1.1); 
 }
 
 .itemImageContainer {
@@ -119,6 +130,7 @@ body {
 
 .productInfoContainer h2{
     font-size: 2.5em;
+    margin-top: 5px;
 }
 
 .productInfoContainer p{
@@ -141,6 +153,10 @@ body {
 .cartHeaderCont{
     display: flex;
     width: 550px;
+}
+
+.cartHeaderCont p {
+    font-weight: bold;
 }
 
 .CHProdCont {
@@ -249,5 +265,14 @@ body {
 }
 
 .footer {
-    border-top: 2px solid blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+
+.footer img{
+    height: 40px;
+    width: 40px;
+    margin-left: 5px;
 }
