@@ -1,7 +1,7 @@
 {
   "name": "e-comm2",
   "version": "1.0.0",
-  "homepage": "https://pern-e-commerce.herokuapp.com/",
+  "homepage": "https://pern-webapp-server.herokuapp.com",
   "description": "",
   "main": "index.js",
   "scripts": {
