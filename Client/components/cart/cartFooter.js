@@ -24,7 +24,7 @@ export default function CartFooter() {
         } else {
             dispatch(startPaymentProcess())
             const order = handleTestOrder();
-            dispatch(submitOrder(order))
+            dispatch(submitOrder(order)) 
             
         }
 
