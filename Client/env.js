@@ -1,4 +1,4 @@
 export const env = {
-    SERVER_BASE_URL: "http://localhost:5000"
+    SERVER_BASE_URL: "https://pern-webapp-server.herokuapp.com"
 }
 

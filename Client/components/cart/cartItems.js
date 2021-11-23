@@ -20,14 +20,20 @@ export default function CartItem (props) {
 
     return (
         <div className='cartItemContainer'>
-            <p>{thisProduct.name}</p>
+            <div className="cartItemNameCont">
+                <p>{thisProduct.name}</p>
+            </div>
             <div className="cartItemQuantContainer">
                 <button onClick={() => dispatch(removeFromCart(props.id, false, thisProdUnitPrice))}>-</button>
                     <p>{thisItem.quantity}</p>
                 <button onClick={() => dispatch(addToCart(props.id, 1, thisProdUnitPrice))}>+</button>
             </div>
-            <p>{formatedUnitPrice}</p>
-            <p>£{subtotal}</p>
+            <div className="cartItemUPCont">
+                <p>{formatedUnitPrice}</p>
+            </div>
+            <div className="cartItemSTCont">
+                <p>£{subtotal}</p>
+            </div>
             <button onClick={() => dispatch(removeFromCart(props.id, true, thisProdUnitPrice))}>X</button>
         </div>
     )

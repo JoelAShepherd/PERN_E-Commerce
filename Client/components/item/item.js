@@ -4,6 +4,9 @@ import { selectItems } from './itemsSlice.js';
 import { selectProducts } from '../products/productsSlice.js';
 import { addToCart } from '../cart/cartSlice.js';
 import { Link } from 'react-router-dom';
+import { env } from '../../env'
+
+const host = env.SERVER_BASE_URL;
 
 export default function Item (props) {
     const dispatch = useDispatch();
@@ -29,7 +32,7 @@ export default function Item (props) {
     } 
 
     const link = `/products/${thisProduct.name}`
-    const imageSrc = `http://localhost:5000/public/${props.id}.jpg`
+    const imageSrc = `${host}/public/${props.id}.jpg`
     
     return (
         <div className='itemContainer' data-testid={"product" + props.id}>

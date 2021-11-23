@@ -23,7 +23,7 @@ export default function HeaderLoginButton() {
         return (
             <div className='headerLoginContainer'>
                 <Link to='/login'>
-                    My Dashboard
+                    <span>My Dashboard</span>
                 </Link>
                 <a href='#' onClick={handleLogout}>Logout</a>
             </div>

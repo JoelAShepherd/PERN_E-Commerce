@@ -33,7 +33,7 @@ export default function Dashboard() {
         { ordersFetched ?
           (ordersFetched.map((order, index) => 
           <CustomerOrder key={index} order={order}/>)) :
-          <p>You haven't placed any orders yet</p>
+          <p>You haven&apos;t placed any orders yet</p>
         }
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import CartItem from './cartItems.js';
 import CartFooter from './cartFooter.js';
+import CartHeader from './cartHeader.js';
 import { useSelector } from 'react-redux';
 import { selectCartItems } from './cartSlice.js';
 import {selectPaymentSuccess } from './payments/paymentSlice.js';
@@ -27,6 +28,7 @@ export default function Cart() {
 
     return (
         <div className="cartContainer">
+            <CartHeader />
             {cartItemsArr.map((cartItem, index) => 
                 <CartItem id={cartItem.id} key={index} />
             )}

@@ -18,11 +18,15 @@ export default function Header () {
                 <HeaderLoginButton />
                 <Link to='/cart' className="cartInHeader">
                     <div className='cart'>
-                        Cart
+                        <span>Cart:</span>
                         <div className='cartCountCont'>
-                            <div className='cartcount'>{cartQuant}</div>
+                            <div className='cartcount'>
+                                <span>{cartQuant}</span>
+                            </div>
                         </div>
-                        <div className='cartsum'>£{cartTotal.toFixed(2)}</div>
+                        <div className='cartsum'>
+                            <span>£{cartTotal.toFixed(2)}</span>
+                        </div>
                     </div>
                 </Link>
             </div>

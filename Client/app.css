@@ -28,21 +28,28 @@ body {
 }
 
 .headerLoginContainer{
-    padding-top: 10px;
+    padding-top: 11px;
 }
 
 .headerLoginContainer a{
     margin: 5px;
+    text-decoration: none;
 }
 
 .cartInHeader {
     padding-top: 8px;
+    text-decoration: none;
 }
 
 .login, .cart {
     display: flex;
     align-items: center;
     margin: 0px 30px;
+}
+
+.login a {
+    text-decoration: none;
+    margin-top: 2px;
 }
 
 .cartCountCont {
@@ -53,21 +60,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 8px;
+    margin: 2px 8px;
 }
 
 .mainContent{
     flex-grow: 1;
-    background-image: url('http://localhost:5000/public/woven.png');
+    background-image: url('https://pern-webapp-server.herokuapp.com/public/woven.png');
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 5vh;
 }
 
-.outerProductsContainer {
+.innerProductsContainer{
     display: flex;
     justify-content:space-around;
-    flex-flow: row wrap;}
+    flex-flow: row wrap;
+}
 
 .itemContainer {
     height: 200px;
@@ -130,6 +138,27 @@ body {
     margin: 10px;
 }
 
+.cartHeaderCont{
+    display: flex;
+    width: 550px;
+}
+
+.CHProdCont {
+    margin-left: 23px;
+}
+
+.CHQuantCont{
+    margin-left: 85px;
+}
+
+.CHUPriceCont {
+    margin-left: 45px;
+}
+
+.CHSubCont{
+    margin-left: 55px;
+}
+
 .cartContainer {
     display: flex;
     flex-direction: column;
@@ -138,10 +167,9 @@ body {
 
 .cartItemContainer {
     display: flex;
-    border: 2px solid grey;
-    border-radius: 5px;
+    border-bottom: 2px solid grey;
     height: 30px;
-    width: 60vw;
+    width: 550px;
     margin: 10px;
     justify-content: space-around;
 }
@@ -150,14 +178,28 @@ body {
     margin-block-start: 0;
 }
 
+.cartItemNameCont {
+    width: 100px;
+}
+
 .cartItemQuantContainer {
     display: flex;
 }
 
+.cartItemQuantContainer button {
+    margin: 0px 5px 
+}
+
+.cartItemUPCont, .cartItemSTCont{
+    width: 50px;
+}
+
+
+
 .cartFooter {
     border-top: 4px solid green;
     height: 30px;
-    width: 60vw;
+    width: 550px;
     margin: 10px;
     text-align: right;
 }

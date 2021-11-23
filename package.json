@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "node server/index.js",
+    "start": "node index.js",
     "dev-start": "webpack-dev-server --mode development --open --hot"
   },
   "keywords": [],
