@@ -40,10 +40,10 @@ test('Plus button increments value', async() => {
     const product1IncrementButton = within(product1).getByRole("increment");
     const product1Value = within(product1).getByRole("itemQuantity")
     console.log(product1Value.textContent)
-    expect(product1Value.textContent).toEqual("5")
+    expect(product1Value.textContent).toEqual("1")
 
     fireEvent.click(product1IncrementButton)
-    expect(product1Value.textContent).toEqual("6")
+    expect(product1Value.textContent).toEqual("2")
 
 
 })
@@ -53,14 +53,14 @@ test('Minus button decrements value', async() => {
 
     await waitFor(() => expect(queryByText('Products')).toBeInTheDocument())
 
-    const product2 = await screen.findByTestId("product2");
-    const product2DecrementButton = within(product2).getByRole("decrement");
-    const product2Value = within(product2).getByRole("itemQuantity")
+    const product1 = await screen.findByTestId("product1");
+    const product1DecrementButton = within(product1).getByRole("decrement");
+    const product1Value = within(product1).getByRole("itemQuantity")
     
-    expect(product2Value.textContent).toEqual("5")
+    expect(product1Value.textContent).toEqual("2")
 
-    fireEvent.click(product2DecrementButton)
-    expect(product2Value.textContent).toEqual("4")
+    fireEvent.click(product1DecrementButton)
+    expect(product1Value.textContent).toEqual("1")
 
 
 })
