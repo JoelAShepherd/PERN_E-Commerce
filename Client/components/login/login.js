@@ -60,14 +60,10 @@ const Login = () => {
     
         
     if (loginStatus){
-            try{
-                return (
-                        <Dashboard />
-                )
-            } catch(err){
-                console.log(err.message)
-            }
-        }
+        return (
+            <Dashboard />
+        )
+    }
     
 
     return(
