@@ -6,6 +6,10 @@ import { addToCart } from '../cart/cartSlice.js';
 import { Link } from 'react-router-dom';
 import { env } from '../../env'
 
+import chevLeft from '../../../public/icons/chevLeft.png';
+import chevRight from '../../../public/icons/chevRight.png';
+import cart from '../../../public/icons/cart.png';
+
 const host = env.SERVER_BASE_URL;
 
 export default function Item (props) {
@@ -44,14 +48,14 @@ export default function Item (props) {
             </div>
             <div className='itemSelectContainer'>
                 <button onClick={() => dispatch(changeItemQuant(false))} role="decrement">
-                    <img src='icons/chevLeft.png'/>
+                    <img src={chevLeft}/>
                 </button>
                 <p role="itemQuantity">{thisItemQuant}</p>
                 <button onClick={() => dispatch(changeItemQuant(true))} role="increment">
-                    <img src='icons/chevRight.png'/>
+                    <img src={chevRight}/>
                 </button>
                 <button onClick={() => dispatch(addToCart(props.id, thisItemQuant, thisProdUnitPrice))}>
-                    <img src='icons/cart.png' />
+                    <img src={cart} />
                 </button>
             </div>
         </div>
